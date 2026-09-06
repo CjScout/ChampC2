@@ -1,0 +1,1944 @@
+,/*,..*(((((((((((((((((((((((((((((((((,
+,*/((((((((((((((((((/,  .*//((//**, .*((((((*
+((((((((((((((((* *****,,,\########## .(* ,((((((
+(((((((((((/*******************####### .(. ((((((
+(((((((/******************/@@@@@/***\#######\((((((
+,,..**********************/@@@@@@@@@/***,#####.\/(((((
+, ,**********************/@@@@@+@@@/*********##((/ /((((
+..(((##########*********/#@@@@@@@@@/*************,,..((((
+.(((################(/******/@@@@@/****************.. /((
+.((########################(/************************..*(
+.((#############################(/********************.,(
+.((##################################(/***************..(
+.((######################################(/***********..(
+.((######(,.***.,(###################(..***(/*********..(
+.((######*(####((###################((######/(********..(
+.((##################(/**********(################(**...(
+.(((####################/*******(###################.((((
+.(((((############################################/  /((
+..(((((#########################################(..(((((.
+....(((((#####################################( .((((((.
+......(((((#################################( .(((((((.
+(((((((((. ,(############################(../(((((((((.
+  (((((((((/,  ,####################(/..((((((((((.
+        (((((((((/,.  ,*//////*,. ./(((((((((((.
+           (((((((((((((((((((((((((((/
+          by PEASS-ng & RandolphConley
+ADVISORY: WinPEAS - Windows local Privilege Escalation Awesome Script
+WinPEAS should be used for authorized penetration testing and/or educational purposes only
+Any misuse of this software will not be the responsibility of the author or of any other collaborator
+Use it at your own networks and/or with the network owner's explicit permission
+Indicates special privilege over an object or misconfiguration
+Indicates protection is enabled or something is well configured
+Indicates active users
+Indicates disabled users
+Indicates links
+Indicates title
+You can find a Windows local PE Checklist here: https://book.hacktricks.wiki/en/windows-hardening/checklist-windows-privilege-escalation.html
+Best Linux PE & Hardening course: https://hacktricks-training.com/courses/lhe/
+
+====================================||SYSTEM INFORMATION ||====================================
+The following information is curated. To get a full list of system information, run the cmdlet get-computerinfo
+
+Host Name:                 DESKTOP-64LA2VE
+OS Name:                   Microsoft Windows 10 Enterprise LTSC
+OS Version:                10.0.17763 N/A Build 17763
+OS Manufacturer:           Microsoft Corporation
+OS Configuration:          Standalone Workstation
+OS Build Type:             Multiprocessor Free
+Registered Owner:          Windows User
+Registered Organization:
+Product ID:                00425-00000-00002-AA069
+Original Install Date:     5/29/2025, 2:50:30 PM
+System Boot Time:          9/4/2026, 2:50:09 PM
+System Manufacturer:       QEMU
+System Model:              Standard PC (i440FX + PIIX, 1996)
+System Type:               x64-based PC
+Processor(s):              1 Processor(s) Installed.
+                           [01]: Intel64 Family 15 Model 6 Stepping 1 GenuineIntel ~2594 Mhz
+BIOS Version:              SeaBIOS rel-1.17.0-0-gb52ca86e094d-prebuilt.qemu.org, 4/1/2014
+Windows Directory:         C:\Windows
+System Directory:          C:\Windows\system32
+Boot Device:               \Device\HarddiskVolume1
+System Locale:             en-us;English (United States)
+Input Locale:              en-us;English (United States)
+Time Zone:                 (UTC-05:00) Eastern Time (US & Canada)
+Total Physical Memory:     4,095 MB
+Available Physical Memory: 1,430 MB
+Virtual Memory: Max Size:  6,036 MB
+Virtual Memory: Available: 1,165 MB
+Virtual Memory: In Use:    4,871 MB
+Page File Location(s):     C:\pagefile.sys
+Domain:                    WORKGROUP
+Logon Server:              \\DESKTOP-64LA2VE
+Hotfix(s):                 6 Hotfix(s) Installed.
+                           [01]: KB5013892
+                           [02]: KB4470788
+                           [03]: KB4535680
+                           [04]: KB4589208
+                           [05]: KB5014692
+                           [06]: KB5014031
+Network Card(s):           1 NIC(s) Installed.
+                           [01]: Intel(R) PRO/1000 MT Network Connection
+                                 Connection Name: Ethernet
+                                 DHCP Enabled:    Yes
+                                 DHCP Server:     10.0.17.2
+                                 IP address(es)
+                                 [01]: 10.0.17.30
+Hyper-V Requirements:      A hypervisor has been detected. Features required for Hyper-V will not be displayed.
+
+=========|| WINDOWS HOTFIXES
+=| Check missing patches with the embedded windows vulnerability definitions
+
+HotfixID  Description     InstalledBy                   InstalledOn
+--------  -----------     -----------                   -----------
+KB4589208 Update          NT AUTHORITY\SYSTEM           6/19/2022 12:00:00 AM
+KB5014692 Security Update NT AUTHORITY\SYSTEM           6/19/2022 12:00:00 AM
+KB5014031 Update          NT AUTHORITY\SYSTEM           6/19/2022 12:00:00 AM
+KB5013892 Update          DESKTOP-64LA2VE\Administrator 6/19/2022 12:00:00 AM
+KB4535680 Security Update DESKTOP-64LA2VE\Administrator 6/19/2022 12:00:00 AM
+KB4470788 Security Update                               3/6/2019 12:00:00 AM
+
+
+
+=========|| PRINTNIGHTMARE POINTANDPRINT POLICY
+PointAndPrint policy key not found
+
+=========|| ALL UPDATES INSTALLED
+
+Result    Date                Title
+------    ----                -----
+Succeeded 9/5/2026 7:05:06 PM Security Intelligence Update for Microsoft Defender Antivirus - KB2267602 (Version 1.4...
+Failed    9/4/2026 3:25:54 PM Update for Microsoft Defender Antivirus antimalware platform - KB4052623 (Version 4.18...
+
+
+
+=========|| Drive Info
+Drive: C:
+Label:
+Size: 59.46 GB
+Free Space: 45.53 GB
+
+
+=========|| Antivirus Detection (attemping to read exclusions as well)
+displayName
+Windows Defender
+
+
+=========|| NET ACCOUNTS Info
+Force user logoff how long after time expires?:       Never
+Minimum password age (days):                          0
+Maximum password age (days):                          42
+Minimum password length:                              0
+Length of password history maintained:                None
+Lockout threshold:                                    Never
+Lockout duration (minutes):                           30
+Lockout observation window (minutes):                 30
+Computer role:                                        WORKSTATION
+The command completed successfully.
+
+
+=========|| REGISTRY SETTINGS CHECK
+
+=========|| Audit Log Settings
+No Audit Log settings, no registry entry found.
+
+=========|| Windows Event Forward (WEF) registry
+Logs are not being fowarded, no registry entry found.
+
+=========|| LAPS Check
+LAPS dlls not found on this machine
+
+=========|| WDigest Check
+The system was unable to find the specified registry value: UseLogonCredential
+
+=========|| LSA Protection Check
+The system was unable to find the specified registry value: RunAsPPL / RunAsPPLBoot
+
+=========|| Credential Guard Check
+The system was unable to find the specified registry value: LsaCfgFlags
+
+=========|| Cached WinLogon Credentials Check
+10
+However, only the SYSTEM user can view the credentials here: HKEY_LOCAL_MACHINE\SECURITY\Cache
+Or, using mimikatz lsadump::cache
+
+=========|| Additonal Winlogon Credentials Check
+
+=========|| RDCMan Settings Check
+No RDCMan.Settings found.
+
+=========|| RDP Saved Connections Check
+HK_Users
+
+Not found for HKEY_USERS\.DEFAULT
+Not found for HKEY_USERS\S-1-5-21-4145177231-505709127-2928218559-1002
+Not found for HKEY_USERS\S-1-5-21-4145177231-505709127-2928218559-1002_Classes
+Not found for HKEY_USERS\S-1-5-18
+HKCU
+Terminal Server Client not found in HCKU
+
+=========|| Putty Stored Credentials Check
+No putty credentials found in HKCU:\SOFTWARE\SimonTatham\PuTTY\Sessions
+
+=========|| SSH Key Checks
+
+=========|| If found:
+https://blog.ropnop.com/extracting-ssh-private-keys-from-windows-10-ssh-agent/
+
+=========|| Checking Putty SSH KNOWN HOSTS
+No putty ssh keys found
+
+=========|| Checking for OpenSSH Keys
+No OpenSSH Keys found.
+
+=========|| Checking for WinVNC Passwords
+No WinVNC found.
+
+=========|| Checking for SNMP Passwords
+No SNMP found.
+
+=========|| Checking for TightVNC Passwords
+No TightVNC found.
+
+=========|| UAC Settings
+EnableLUA is equal to 1. Part or all of the UAC components are on.
+https://book.hacktricks.wiki/en/windows-hardening/authentication-credentials-uac-and-efs/uac-user-account-control.html#very-basic-uac-bypass-full-file-system-access
+
+=========|| Recently Run Commands (WIN+R)
+=========||HKU Recently Run Commands
+
+=========||HKCU Recently Run Commands
+
+=========|| Always Install Elevated Check
+Checking Windows Installer Registry (will populate if the key exists)
+
+=========|| PowerShell Info
+PowerShell 2.0 available
+PowerShell 5.1.17763.1 available
+
+=========|| PowerShell Registry Transcript Check
+
+=========|| PowerShell Module Log Check
+
+=========|| PowerShell Script Block Log Check
+
+=========|| WSUS check for http and UseWAServer = 1, if true, might be vulnerable to exploit
+https://book.hacktricks.wiki/en/windows-hardening/windows-local-privilege-escalation/index.html#wsus
+
+=========|| Internet Settings HKCU / HKLM
+DisableCachingOfSSLPages - 0
+IE5_UA_Backup_Flag - 5.0
+PrivacyAdvanced - 1
+SecureProtocols - 2688
+User Agent - Mozilla/4.0 (compatible; MSIE 8.0; Win32)
+CertificateRevocation - 1
+ZonesSecurityUpgrade - 245 52 168 109 210 208 219 1
+EnableNegotiate - 1
+MigrateProxy - 1
+ProxyEnable - 0
+ActiveXCache - C:\Windows\Downloaded Program Files
+CodeBaseSearchPath - CODEBASE
+EnablePunycode - 1
+MinorVersion - 0
+WarnOnIntranet - 1
+
+=========|| RUNNING PROCESSES
+
+=========|| Checking user permissions on running processes
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+Identity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for C:\Windows\System32\WindowsPowerShellIdentity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for C:\Windows\system32\WindowsPowerShellIdentity BUILTIN\Administrators has 'FullControl' perms for C:\
+Identity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for C:\Windows\SystemApps
+Identity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for C:\Windows\SystemApps
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+Identity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for C:\Windows\SystemApps
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+Identity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for C:\Windows\SystemApps
+
+=========|| System processes
+
+Image Name                     PID Session Name        Session#    Mem Usage Status          User Name                                              CPU Time Window Title
+========================= ======== ================ =========== ============ =============== ================================================== ============ ========================================================================
+System Idle Process              0 Services                   0          8 K Unknown         NT AUTHORITY\SYSTEM                                    72:54:37 N/A
+
+=========|| SERVICE path vulnerable check
+Checking for vulnerable service .exe
+sppsvc found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+GoogleChromeElevationService found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\Program Files\Google\Chrome\Application\152.0.7977.76\elevation_service.exe
+QEMU-GA found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\Program Files\Qemu-ga\qemu-ga.exe
+WMPNetworkSvc found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+VGAuthService found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\Program Files\VMware\VMware Tools\VMware VGAuth\VGAuthService.exe
+NetTcpPortSharing found with permissions issue:
+Identity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for C:\Windows\Microsoft.NET\Framework64
+BalloonService found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\Program Files\Virtio-Win\Balloon\blnsvr.exe
+RpcLocator found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+perceptionsimulation found with permissions issue:
+Identity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for C:\Windows\system32\PerceptionSimulation
+wbengine found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+VirtioFsSvc found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\Program Files\Virtio-Win\VioFS\virtiofs.exe
+VSS found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+MSDTC found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+Fax found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+WinDefend found with permissions issue:
+Identity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for C:\ProgramData\Microsoft\Windows Defender\Platform
+TrustedInstaller found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+Spooler found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+Sense found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+msiserver found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+SecurityHealthService found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+vmvss found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+SensorDataService found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+spectrum found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+diagnosticshub.standardcollector.service found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+VaultSvc found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+VMTools found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\Program Files\VMware\VMware Tools\vmtoolsd.exe
+PerfHost found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+TieringEngineService found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+UevAgentService found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+wmiApSrv found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+ssh-agent found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+WdNisSvc found with permissions issue:
+Identity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for C:\ProgramData\Microsoft\Windows Defender\Platform
+GoogleUpdaterService152.0.7933.0 found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\Program Files (x86)\Google\GoogleUpdater\152.0.7933.0\updater.exe
+AppVClient found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+SNMPTRAP found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+SgrmBroker found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+WSearch found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+WpnUserService_11cfbbe found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+vds found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+ALG found with permissions issue:
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+
+=========|| Checking for Unquoted Service Paths
+Fetching the list of services, this may take a while...
+No unquoted service paths were found
+
+=========|| Checking Service Registry Permissions
+This will take some time.
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\.NET CLR Data
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\.NET CLR Networking
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\.NET CLR Networking 4.0.0.0
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\.NET Data Provider for Oracle
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\.NET Data Provider for SqlServer
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\.NET Memory Cache 4.0
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\.NETFramework
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\1394ohci
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\3ware
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\ACPI
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\AcpiDev
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\acpiex
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\acpipagr
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\AcpiPmi
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\acpitime
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\ADOVMPPackage
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\ADP80XX
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\adsi
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\AFD
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\afunix
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\ahcache
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\AJRouter
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\ALG
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\AmdK8
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\AmdPPM
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\amdsata
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\amdsbs
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\amdxata
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\AppID
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\AppIDSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Appinfo
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\applockerfltr
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\AppMgmt
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\AppReadiness
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\AppVClient
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\AppvStrm
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\AppvVemgr
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\AppvVfs
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\AppXSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\arcsas
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\AssignedAccessManagerSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\AsyncMac
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\atapi
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\AudioEndpointBuilderIdentity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Audiosrv
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\AxInstSV
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\b06bdrv
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\BALLOON
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\BalloonService
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\bam
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\BasicDisplay
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\BasicRender
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\BattC
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\BcastDVRUserService
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\BcastDVRUserService_11cfbbe
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\bcmfn2
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\BDESVC
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Beep
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\BFE
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\bindflt
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\BITS
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\BluetoothUserServiceIdentity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\BluetoothUserService_11cfbbe
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\bowser
+Identity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\BrokerInfrastructure
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\BTAGService
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\BthAvctpSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\BthEnum
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\BthHFEnum
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\BthLEEnum
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\BthMini
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\BTHMODEM
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\BTHPORT
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\bthserv
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\BTHUSB
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\bttflt
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\buttonconverter
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\CAD
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\camsvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\CapImg
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\CaptureService
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\CaptureService_11cfbbe
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\cbdhsvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\cbdhsvc_11cfbbe
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\cdfs
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\CDPSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\CDPUserSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\CDPUserSvc_11cfbbe
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\cdrom
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\CertPropSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\cht4iscsi
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\cht4vbd
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\circlass
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\CldFlt
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\CLFS
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\ClipSVC
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\clr_optimization_v4.0.30319_32
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\clr_optimization_v4.0.30319_64
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\CmBatt
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\CNG
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\cnghwassist
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\CompositeBus
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\COMSysApp
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\condrv
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\ConsentUxUserSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\ConsentUxUserSvc_11cfbbe
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\CoreMessagingRegistrar
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\CoreUI
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\crypt32
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\CryptSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\CSC
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\CscService
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\dam
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\DCLocator
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\defragsvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\DeviceAssociationService
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\DeviceInstall
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\DevicePickerUserSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\DevicePickerUserSvc_11cfbbe
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\DevicesFlowUserSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\DevicesFlowUserSvc_11cfbbe
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\DevQueryBroker
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Dfsc
+Identity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Dhcp
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\diagnosticshub.standardcollector.service
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\diagsvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\DiagTrack
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Disk
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\DisplayEnhancementService
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\DmEnrollmentSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\dmvsc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\dmwappushservice
+Identity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Dnscache
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\DoSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\dot3svc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\drmkaud
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\DsmSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\DsSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\DusmSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\DXGKrnl
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\E1G60
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\e1iexpress
+Identity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Eaphost
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\ebdrv
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\EFS
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\EhStorClass
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\EhStorTcgDrv
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\embeddedmode
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\EntAppSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\ErrDev
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\ESENT
+Identity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\EventLog
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\EventSystem
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\exfat
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\fastfat
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Fax
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\fdc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\fdPHost
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\FDResPub
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\fhsvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\FileCrypt
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\FileInfo
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Filetrace
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\flpydisk
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\FltMgr
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\FontCache
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\FrameServer
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\FsDepends
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Fs_Rec
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\fvevol
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\FwCfg
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\gencounter
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\genericusbfn
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\GoogleChromeElevationService
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\GoogleUpdaterInternalService152.0.7933.0
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\GoogleUpdaterService152.0.7933.0
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\GPIOClx0101
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\GpuEnergyDrv
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\GraphicsPerfSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\HDAudBus
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\HidBatt
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\HidBth
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\hidi2c
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\hidinterrupt
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\HidIr
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\hidserv
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\hidspi
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\HidUsb
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\HomeGroupListener
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\HomeGroupProvider
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\HpSAMD
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\HTTP
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\hvcrash
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\HvHost
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\hvservice
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\HwNClx0101
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\hwpolicy
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\hyperkbd
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\HyperVideo
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\i8042prt
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\iagpio
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\iai2c
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\iaLPSS2i_GPIO2
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\iaLPSS2i_GPIO2_BXT_PIdentity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\iaLPSS2i_GPIO2_CNL
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\iaLPSS2i_GPIO2_GLK
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\iaLPSS2i_I2C
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\iaLPSS2i_I2C_BXT_P
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\iaLPSS2i_I2C_CNL
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\iaLPSS2i_I2C_GLK
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\iaLPSSi_GPIO
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\iaLPSSi_I2C
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\iaStorAVC
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\iaStorV
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\ibbus
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\icssvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\IKEEXT
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\IndirectKmd
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\inetaccs
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\InstallService
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\intelide
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\intelpep
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\intelppm
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\iorate
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\IpFilterDriver
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\iphlpsvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\IPMIDRV
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\IPNAT
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\IPT
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\IpxlatCfgSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\irda
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\IRENUM
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\irmon
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\isapnp
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\iScsiPrt
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\ItSas35i
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\kbdclass
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\kbdhid
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\kdnic
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\KeyIso
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\KSecDD
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\KSecPkg
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\KslD
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\ksthunk
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\KtmRm
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\LanmanServer
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\LanmanWorkstation
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\ldap
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\lfsvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\LicenseManager
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\lltdio
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\lltdsvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\lmhosts
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Lsa
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\LSI_SAS
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\LSI_SAS2i
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\LSI_SAS3i
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\LSI_SSS
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\LSM
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\luafv
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\LxpSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\MapsBroker
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\mausbhost
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\mausbip
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\MbbCx
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\megasas
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\megasas2i
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\megasas35i
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\megasr
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\MessagingService
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\MessagingService_11cfbbe
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Microsoft_Bluetooth_AvrcpTransport
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\mlx4_bus
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\MMCSS
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Modem
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\monitor
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\mouclass
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\mouhid
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\mountmgr
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\mpsdrv
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\mpssvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\MRxDAV
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\mrxsmb
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\mrxsmb20
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\MsBridge
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\MSDTC
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\MSDTC Bridge 4.0.0.0Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Msfs
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\msgpiowin32
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\mshidkmdf
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\mshidumdf
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\msisadrv
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\MSiSCSI
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\msiserver
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\MSKSSRV
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\MsLldp
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\MSPCLOCK
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\MSPQM
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\MsRPC
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\MSSCNTRS
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\MsSecFlt
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\mssmbios
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\MSTEE
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\MTConfig
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Mup
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\mvumis
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\napagent
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\NativeWifiP
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\NaturalAuthentication
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\NcaSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\NcbService
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\NcdAutoSetup
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\ndfltr
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\NDIS
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\NdisCap
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\NdisImPlatform
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\NdisTapi
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Ndisuio
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\NdisVirtualBus
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\NdisWan
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\ndiswanlegacy
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\ndproxy
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Ndu
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\NetAdapterCx
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\NetBIOS
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\NetbiosSmb
+Identity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\NetBT
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Netlogon
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Netman
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\netprofm
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\NetSetupSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\NetTcpPortSharing
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\netvsc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\NgcCtnrSvc
+Identity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\NgcSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\NlaSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Npfs
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\npsvctrig
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\nsi
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\nsiproxy
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\NTDS
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Ntfs
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Null
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\nvdimm
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\nvraid
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\nvstor
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\OneSyncSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\OneSyncSvc_11cfbbe
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\p2pimsvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\p2psvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Parport
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\partmgr
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\PcaSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\pci
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\pciide
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\pcmcia
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\pcw
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\pdc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\PEAUTH
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\PeerDistSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\perceptionsimulationIdentity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\percsas2i
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\percsas3i
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\PerfDisk
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\PerfHost
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\PerfNet
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\PerfOS
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\PerfProc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\PhoneSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\PimIndexMaintenanceSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\PimIndexMaintenanceSvc_11cfbbe
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\PktMon
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\pla
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\PlugPlay
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\pmem
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\PNPMEM
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\PNRPAutoReg
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\PNRPsvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\PolicyAgent
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\PortProxy
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Power
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\PptpMiniport
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\PrintNotify
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\PrintWorkflowUserSvcIdentity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\PrintWorkflowUserSvc_11cfbbe
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Processor
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\ProfSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Psched
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\PushToInstall
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\pvscsi
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\QEMU Guest Agent VSS Provider
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\QEMU-GA
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\QWAVE
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\QWAVEdrv
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Ramdisk
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\RasAcd
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\RasAgileVpn
+Identity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\RasAuto
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Rasl2tp
+Identity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\RasMan
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\RasPppoe
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\RasSstp
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\rdbss
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\RDMANDK
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\rdpbus
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\RDPDR
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\RDPNP
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\RDPUDD
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\RdpVideoMiniport
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\rdyboost
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\ReFS
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\ReFSv1
+Identity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\RemoteAccess
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\RemoteRegistry
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\RetailDemo
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\RFCOMM
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\rhproxy
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\RmSvc
+Identity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\RpcEptMapper
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\RpcLocator
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\rspndr
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\s3cap
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\sbp2port
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SCardSvr
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\ScDeviceEnum
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\scfilter
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Schedule
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\scmbus
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SCPolicySvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\sdbus
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SDFRd
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SDRSVC
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\sdstor
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\seclogon
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SecurityHealthService
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SEMgrSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SENS
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Sense
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SensorDataService
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SensorService
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SensrSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SerCx
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SerCx2
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Serenum
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Serial
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\sermouse
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SessionEnv
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\sfloppy
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SgrmAgent
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SgrmBroker
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SharedAccess
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SharedRealitySvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\ShellHWDetection
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\shpamsvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SiSRaid2
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SiSRaid4
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SmartPqi
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SmartSAMD
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\smbdirect
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\smphost
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SmsRouter
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SMSvcHost 4.0.0.0
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SNMPTRAP
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\spaceport
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SpbCx
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\spectrum
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Spooler
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\sppsvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\srv2
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\srvnet
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SSDPSRV
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\ssh-agent
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SstpSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\StateRepository
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\stexstor
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\stisvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\storahci
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\storflt
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\stornvme
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\storqosflt
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\StorSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\storufs
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\storvsc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\svsvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\swenum
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\swprv
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Synth3dVsc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SysMain
+Identity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\SystemEventsBroker
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\TabletInputService
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\TapiSrv
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Tcpip
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Tcpip6
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\TCPIP6TUNNEL
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\tcpipreg
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\TCPIPTUNNEL
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\tdx
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\terminpt
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\TermService
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Themes
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\TieringEngineServiceIdentity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\TimeBrokerSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\TokenBroker
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\TPM
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\TSDDD
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\TsUsbFlt
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\TsUsbGD
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\tsusbhub
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\tunnel
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\tzautoupdate
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\UASPStor
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\UcmCx0101
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\UcmTcpciCx0101
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\UcmUcsi
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\UcmUcsiAcpiClient
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\UcmUcsiCx0101
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Ucx01000
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\UdeCx
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\udfs
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\UEFI
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\UevAgentDriver
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\UevAgentService
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Ufx01000
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\UfxChipidea
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\ufxsynopsys
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\UGatherer
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\UGTHRSVC
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\umbus
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\UmPass
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\UmRdpService
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\UnistoreSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\UnistoreSvc_11cfbbe
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\upnphost
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\UrsChipidea
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\UrsCx01000
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\UrsSynopsys
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\usbccgp
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\usbcir
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\usbehci
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\usbhub
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\USBHUB3
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\usbohci
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\usbprint
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\usbser
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\USBSTOR
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\usbuhci
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\USBXHCI
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\UserDataSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\UserDataSvc_11cfbbe
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\UserManager
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\UsoSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\VacSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\VaultSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vdrvroot
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vds
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\VerifierExt
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\VGAuthService
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vhdmp
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vhf
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Vid
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\VirtioFsSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\VirtioSerial
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vm3dmp
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vm3dmp-debug
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vm3dmp-stats
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vm3dmp_loader
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vmbus
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\VMBusHID
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vmci
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vmgid
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vmicguestinterface
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vmicheartbeat
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vmickvpexchange
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vmicrdv
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vmicshutdown
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vmictimesync
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vmicvmsession
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vmicvss
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\VMMemCtl
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vmmouse
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\VMTools
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vmusbmouse
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vmvss
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vmwefifw
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vmxnet3ndis6
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\volmgr
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\volmgrx
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\volsnap
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\volume
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vpci
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vsmraid
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vsock
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\VSS
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\VSTXRAID
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vwifibus
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\vwififlt
+Identity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\W32Time
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WaaSMedicSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WacomPen
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WalletService
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\wanarp
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\wanarpv6
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WarpJITSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\wbengine
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WbioSrvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\wcifs
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Wcmsvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\wcncsvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\wcnfs
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WdAiNisDrv
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WdBoot
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Wdf01000
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WdFilter
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\wdiwifi
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WdmCompanionFilter
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WdNisDrv
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WdNisSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WebClient
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Wecsvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WEPHOSTSVC
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\wercplsupport
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WerSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WFDSConMgrSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WFPLWFS
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WiaRpc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WIMMount
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WinDefend
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Windows Workflow Foundation 4.0.0.0
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WindowsTrustedRT
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WindowsTrustedRTProxy
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WinHttpAutoProxySvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WinMad
+Identity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Winmgmt
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WinNat
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WinQuic
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WinRM
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Winsock
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WinSock2
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WINUSB
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WinVerbs
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\wisvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WlanSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\wlidsvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\wlpasvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WManSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WmiAcpi
+Identity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WmiApRpl
+Identity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\wmiApSrv
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WMPNetworkSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\Wof
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\workerdd
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\workfolderssvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WpcMonSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WPDBusEnum
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WpdUpFltr
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WpnService
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WpnUserService
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WpnUserService_11cfbbe
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\ws2ifsl
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\wscsvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WSearch
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WSearchIdxPi
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\wuauserv
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WudfPf
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WUDFRd
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\WwanSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\XblAuthManager
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\XblGameSave
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\xboxgip
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\XboxGipSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\XboxNetApiSvc
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\xinputhid
+Identity BUILTIN\Administrators has 'FullControl' perms for hklm:\System\CurrentControlSet\services\xmlprov
+
+=========|| SCHEDULED TASKS vulnerable check
+
+=========|| Testing access to c:\windows\system32\tasks
+No admin access to scheduled tasks folder.
+
+=========|| STARTUP APPLICATIONS Vulnerable Check
+https://book.hacktricks.wiki/en/windows-hardening/windows-local-privilege-escalation/index.html#run-at-startup
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\Documents and Settings\All Users\Start Menu\Programs\Startup
+Identity BUILTIN\Users BUILTIN\Users has 'Write' perms for C:\Documents and Settings\All Users\Start Menu\Programs\Startup
+Identity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for C:\Documents and Settings\All Users\Start Menu\Programs\Startup\desktop.ini
+Identity BUILTIN\Users BUILTIN\Users BUILTIN\Users has 'Write' perms for C:\Documents and Settings\All Users\Start Menu\Programs\Startup\desktop.ini
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\Documents and Settings\All Users\Start Menu\Programs\Startup\SEC335_InstallElevated.bat
+Identity BUILTIN\Users BUILTIN\Users has 'Write' perms for C:\Documents and Settings\All Users\Start Menu\Programs\Startup\SEC335_InstallElevated.bat
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartupIdentity BUILTIN\Users BUILTIN\Users has 'Write' perms for C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup
+Identity BUILTIN\Administrators BUILTIN\Administrators has 'FullControl' perms for C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\desktop.ini
+Identity BUILTIN\Users BUILTIN\Users BUILTIN\Users has 'Write' perms for C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\desktop.ini
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\SEC335_InstallElevated.bat
+Identity BUILTIN\Users BUILTIN\Users has 'Write' perms for C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\SEC335_InstallElevated.bat
+
+=========|| STARTUP APPS Registry Check
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\
+Identity BUILTIN\Administrators has 'FullControl' perms for C:\Program Files\VMware\VMware Tools\vmtoolsd.exe
+
+=========|| INSTALLED APPLICATIONS
+Generating list of installed applications
+
+=========|| LOOKING FOR BASH.EXE
+C:\Windows\WinSxS\amd64_microsoft-windows-lxss-bash.resources_31bf3856ad364e35_10.0.17763.1_en-us_a373353a4b22f4ac\bash.exe.mui
+C:\Windows\WinSxS\amd64_microsoft-windows-lxss-bash_31bf3856ad364e35_10.0.17763.1_none_3061487514bb83f7\bash.exe
+C:\Windows\WinSxS\amd64_microsoft-windows-lxss-bash_31bf3856ad364e35_10.0.17763.2989_none_8ceeb9c28e8c4dd0\bash.exe C:\Windows\WinSxS\amd64_microsoft-windows-lxss-bash_31bf3856ad364e35_10.0.17763.2989_none_8ceeb9c28e8c4dd0\f\bash.exe C:\Windows\WinSxS\amd64_microsoft-windows-lxss-bash_31bf3856ad364e35_10.0.17763.2989_none_8ceeb9c28e8c4dd0\r\bash.exe
+
+
+
+=========|| LOOKING FOR SCCM CLIENT
+Not Installed.
+
+=========|| NETWORK INFORMATION
+
+=========|| HOSTS FILE
+Get content of etc\hosts file
+
+=========|| IP INFORMATION
+
+=========|| Ipconfig ALL
+
+Windows IP Configuration
+
+   Host Name . . . . . . . . . . . . : DESKTOP-64LA2VE
+   Primary Dns Suffix  . . . . . . . :
+   Node Type . . . . . . . . . . . . : Hybrid
+   IP Routing Enabled. . . . . . . . : No
+   WINS Proxy Enabled. . . . . . . . : No
+   DNS Suffix Search List. . . . . . : cyber.local
+
+Ethernet adapter Ethernet:
+
+   Connection-specific DNS Suffix  . : cyber.local
+   Description . . . . . . . . . . . : Intel(R) PRO/1000 MT Network Connection
+   Physical Address. . . . . . . . . : BC-24-11-3F-FC-18
+   DHCP Enabled. . . . . . . . . . . : Yes
+   Autoconfiguration Enabled . . . . : Yes
+   IPv4 Address. . . . . . . . . . . : 10.0.17.30(Preferred)
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Lease Obtained. . . . . . . . . . : Friday, September 4, 2026 6:51:34 PM
+   Lease Expires . . . . . . . . . . : Monday, September 7, 2026 2:51:38 AM
+   Default Gateway . . . . . . . . . : 10.0.17.2
+   DHCP Server . . . . . . . . . . . : 10.0.17.2
+   DNS Servers . . . . . . . . . . . : 10.0.17.2
+   NetBIOS over Tcpip. . . . . . . . : Enabled
+   Connection-specific DNS Suffix Search List :
+                                       cyber.local
+
+=========|| DNS Cache
+
+=========|| LISTENING PORTS
+
+Active Connections
+
+  Proto  Local Address          Foreign Address        State           PID
+  TCP    0.0.0.0:135            0.0.0.0:0              LISTENING       892
+  TCP    0.0.0.0:445            0.0.0.0:0              LISTENING       4
+  TCP    0.0.0.0:5040           0.0.0.0:0              LISTENING       2980
+  TCP    0.0.0.0:49664          0.0.0.0:0              LISTENING       492
+  TCP    0.0.0.0:49665          0.0.0.0:0              LISTENING       636
+  TCP    0.0.0.0:49666          0.0.0.0:0              LISTENING       1180
+  TCP    0.0.0.0:49667          0.0.0.0:0              LISTENING       1536
+  TCP    0.0.0.0:49668          0.0.0.0:0              LISTENING       1060
+  TCP    0.0.0.0:49669          0.0.0.0:0              LISTENING       628
+  TCP    10.0.17.30:139         0.0.0.0:0              LISTENING       4
+  TCP    10.0.17.30:50310       104.208.203.90:443     ESTABLISHED     2424
+  TCP    [::]:135               [::]:0                 LISTENING       892
+  TCP    [::]:445               [::]:0                 LISTENING       4
+  TCP    [::]:49664             [::]:0                 LISTENING       492
+  TCP    [::]:49665             [::]:0                 LISTENING       636
+  TCP    [::]:49666             [::]:0                 LISTENING       1180
+  TCP    [::]:49667             [::]:0                 LISTENING       1536
+  TCP    [::]:49668             [::]:0                 LISTENING       1060
+  TCP    [::]:49669             [::]:0                 LISTENING       628
+  UDP    0.0.0.0:5050           *:*                                    2980
+  UDP    0.0.0.0:5353           *:*                                    1656
+  UDP    0.0.0.0:5355           *:*                                    1656
+  UDP    10.0.17.30:137         *:*                                    4
+  UDP    10.0.17.30:138         *:*                                    4
+  UDP    10.0.17.30:1900        *:*                                    2352
+  UDP    10.0.17.30:57443       *:*                                    2352
+  UDP    127.0.0.1:1900         *:*                                    2352
+  UDP    127.0.0.1:53289        *:*                                    1600
+  UDP    127.0.0.1:54044        *:*                                    2732
+  UDP    127.0.0.1:57444        *:*                                    2352
+  UDP    [::1]:1900             *:*                                    2352
+  UDP    [::1]:57442            *:*                                    2352
+
+=========|| ACTIVE DIRECTORY / IDENTITY MISCONFIG CHECKS
+Host appears to be in a workgroup or the AD context could not be resolved. Skipping domain-specific checks.
+
+=========|| ARP Table
+
+Interface: 10.0.17.30 --- 0x5
+  Internet Address      Physical Address      Type
+  10.0.17.2             bc-24-11-a9-de-b4     dynamic
+  10.0.17.27            bc-24-11-ee-28-2f     dynamic
+  10.0.17.51            bc-24-11-be-09-d9     dynamic
+  10.0.17.54            bc-24-11-da-6a-b8     dynamic
+  10.0.17.62            bc-24-11-be-ad-0d     dynamic
+  10.0.17.255           ff-ff-ff-ff-ff-ff     static
+  224.0.0.22            01-00-5e-00-00-16     static
+  224.0.0.251           01-00-5e-00-00-fb     static
+  224.0.0.252           01-00-5e-00-00-fc     static
+  255.255.255.255       ff-ff-ff-ff-ff-ff     static
+
+=========|| Routes
+===========================================================================
+Interface List
+  5...bc 24 11 3f fc 18 ......Intel(R) PRO/1000 MT Network Connection
+  1...........................Software Loopback Interface 1
+===========================================================================
+
+IPv4 Route Table
+===========================================================================
+Active Routes:
+Network Destination        Netmask          Gateway       Interface  Metric
+          0.0.0.0          0.0.0.0        10.0.17.2       10.0.17.30     25
+        10.0.17.0    255.255.255.0         On-link        10.0.17.30    281
+       10.0.17.30  255.255.255.255         On-link        10.0.17.30    281
+      10.0.17.255  255.255.255.255         On-link        10.0.17.30    281
+        127.0.0.0        255.0.0.0         On-link         127.0.0.1    331
+        127.0.0.1  255.255.255.255         On-link         127.0.0.1    331
+  127.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+        224.0.0.0        240.0.0.0         On-link         127.0.0.1    331
+        224.0.0.0        240.0.0.0         On-link        10.0.17.30    281
+  255.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+  255.255.255.255  255.255.255.255         On-link        10.0.17.30    281
+===========================================================================
+Persistent Routes:
+  None
+
+IPv6 Route Table
+===========================================================================
+Active Routes:
+ If Metric Network Destination      Gateway
+  1    331 ::1/128                  On-link
+  1    331 ff00::/8                 On-link
+===========================================================================
+Persistent Routes:
+  None
+
+=========|| Network Adapter info
+----------
+Ethernet
+Intel(R) PRO/1000 MT Network Connection
+5
+Up
+BC-24-11-3F-FC-18
+----------
+
+=========|| Checking for WiFi passwords
+
+=========|| Enabled firewall rules - displaying command only - it can overwrite the display buffer
+=========|| show all rules with: netsh advfirewall firewall show rule dir=in name=all
+
+=========|| SMB SHARES
+Will enumerate SMB Shares and Access if any are available
+BUILTIN\Administrators has Full to IPC$
+NT AUTHORITY\INTERACTIVE has Full to IPC$
+BUILTIN\Administrators has Full to C$
+NT AUTHORITY\INTERACTIVE has Full to C$
+BUILTIN\Administrators has Full to ADMIN$
+NT AUTHORITY\INTERACTIVE has Full to ADMIN$
+
+=========|| USER INFO
+== || Generating List of all Local Administrators, Users and Backup Operators (if any exist)
+
+=========|| USER DIRECTORY ACCESS CHECK
+Read Access to C:\Users\champuser
+Read Access to C:\Users\Public
+
+=========|| WHOAMI INFO
+
+=========|| Check Token access here: https://book.hacktricks.wiki/en/windows-hardening/windows-local-privilege-escalation/privilege-escalation-abusing-tokens.html#abusing-tokens
+=========|| Check if you are inside the Administrators group or if you have enabled any token that can be use to escalate privileges like SeImpersonatePrivilege, SeAssignPrimaryPrivilege, SeTcbPrivilege, SeBackupPrivilege, SeRestorePrivilege, SeCreateTokenPrivilege, SeLoadDriverPrivilege, SeTakeOwnershipPrivilege, SeDebugPrivilege
+https://book.hacktricks.wiki/en/windows-hardening/windows-local-privilege-escalation/index.html#users--groups
+
+USER INFORMATION
+----------------
+
+User Name                 SID
+========================= =============================================
+desktop-64la2ve\champuser S-1-5-21-4145177231-505709127-2928218559-1002
+
+
+GROUP INFORMATION
+-----------------
+
+Group Name                                                    Type             SID          Attributes
+============================================================= ================ ============ ==================================================
+Everyone                                                      Well-known group S-1-1-0      Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\Local account and member of Administrators group Well-known group S-1-5-114    Group used for deny only
+BUILTIN\Administrators                                        Alias            S-1-5-32-544 Group used for deny only
+BUILTIN\Users                                                 Alias            S-1-5-32-545 Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\INTERACTIVE                                      Well-known group S-1-5-4      Mandatory group, Enabled by default, Enabled group
+CONSOLE LOGON                                                 Well-known group S-1-2-1      Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\Authenticated Users                              Well-known group S-1-5-11     Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\This Organization                                Well-known group S-1-5-15     Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\Local account                                    Well-known group S-1-5-113    Mandatory group, Enabled by default, Enabled group
+LOCAL                                                         Well-known group S-1-2-0      Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\NTLM Authentication                              Well-known group S-1-5-64-10  Mandatory group, Enabled by default, Enabled group
+Mandatory Label\Medium Mandatory Level                        Label            S-1-16-8192
+
+
+PRIVILEGES INFORMATION
+----------------------
+
+Privilege Name                Description                          State
+============================= ==================================== ========
+SeShutdownPrivilege           Shut down the system                 Disabled
+SeChangeNotifyPrivilege       Bypass traverse checking             Enabled
+SeUndockPrivilege             Remove computer from docking station Disabled
+SeIncreaseWorkingSetPrivilege Increase a process working set       Disabled
+SeTimeZonePrivilege           Change the time zone                 Disabled
+
+
+=========|| Cloud Credentials Check
+
+=========|| APPcmd Check
+
+=========|| OpenVPN Credentials Check
+
+=========|| PowerShell History (Password Search Only)
+=|| PowerShell Console History
+=|| To see all history, run this command: Get-Content (Get-PSReadlineOption).HistorySavePath
+Set-ExecutionPolicy Bypass dir .\exploit-payload\ Set-ExecutionPolicy Bypass -Scope CurrentUser  Invoke-WebRequest http://10.0.17.27:8000/winPEASpatched.ps1 -outfile winPEASpatched.ps1 .\winPEASpatched.ps1  Invoke-WebRequest http://10.0.17.27:8000/winPEASpatched.ps1 -outfile winPEASpatched.ps1 .\winPEASpatched.ps1
+=|| AppData PSReadline Console History
+=|| To see all history, run this command: Get-Content C:\Users\champuser\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
+Set-ExecutionPolicy Bypass dir .\exploit-payload\ Set-ExecutionPolicy Bypass -Scope CurrentUser  Invoke-WebRequest http://10.0.17.27:8000/winPEASpatched.ps1 -outfile winPEASpatched.ps1 .\winPEASpatched.ps1  Invoke-WebRequest http://10.0.17.27:8000/winPEASpatched.ps1 -outfile winPEASpatched.ps1 .\winPEASpatched.ps1
+=|| PowerShell default transcript history check
+
+=========|| ENVIRONMENT VARIABLES
+Maybe you can take advantage of modifying/creating a binary in some of the following locations
+PATH variable entries permissions - place binary or DLL to execute instead of legitimate
+https://book.hacktricks.wiki/en/windows-hardening/windows-local-privilege-escalation/index.html#dll-hijacking
+Name Used (GB) Free (GB) Provider Root       CurrentLocation
+---- --------- --------- -------- ----       ---------------
+HKU                      Registry HKEY_USERS
+
+Property      : {SetDisableUXWUAccess, DisableWindowsUpdateAccess, DoNotConnectToWindowsUpdateInternetLocations,
+                DeferQualityUpdates...}
+PSPath        : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdat
+                e
+PSParentPath  : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows
+PSChildName   : WindowsUpdate
+PSDrive       : HKLM
+PSProvider    : Microsoft.PowerShell.Core\Registry
+PSIsContainer : True
+SubKeyCount   : 1
+View          : Default
+Handle        : Microsoft.Win32.SafeHandles.SafeRegistryHandle
+ValueCount    : 12
+Name          : HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate
+
+Check if you can modify any binary that is going to be executed by admin or if you can impersonate a not found binary
+Get-Item : Cannot find path 'HKCU\Software\Microsoft\Windows\CurrentVersion\RunOnce' because it does not exist.
+At C:\Users\champuser\Downloads\winPEASpatched.ps1:1421 char:4
++   (Get-Item $_) | ForEach-Object {
++    ~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (HKCU\Software\M...Version\RunOnce:String) [Get-Item], ItemNotFoundExcep
+   tion
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.GetItemCommand
+
+
+Computername    : DESKTOP-64LA2VE
+Software        : VMware Tools
+Version         : 11.3.5.18557794
+Publisher       : VMware, Inc.
+InstallDate     : 20220619
+UninstallString : MsiExec.exe /I{1FF5D624-5515-4343-837A-E54C101573E6}
+Architecture    : x64
+Path            : HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{1FF5D624-5515-4343-837A-E54C1
+                  01573E6}
+
+
+Computername    : DESKTOP-64LA2VE
+Software        : Red Hat QXL controller
+Version         : 0.21.2.0
+Publisher       : Red Hat, Inc.
+InstallDate     : 20250611
+UninstallString : MsiExec.exe /I{5E1A65FB-25EC-456D-859A-251996BF4BCE}
+Architecture    : x64
+Path            : HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{5E1A65FB-25EC-456D-859A-25199
+                  6BF4BCE}
+
+
+Computername    : DESKTOP-64LA2VE
+Software        : Microsoft Visual C++ 2019 X64 Additional Runtime - 14.28.29913
+Version         : 14.28.29913
+Publisher       : Microsoft Corporation
+InstallDate     : 20220619
+UninstallString : MsiExec.exe /I{620A7633-7A09-42A8-8580-076A4483C4B0}
+Architecture    : x64
+Path            : HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{620A7633-7A09-42A8-8580-076A4
+                  483C4B0}
+
+
+Computername    : DESKTOP-64LA2VE
+Software        : QEMU guest agent
+Version         : 109.1.0
+Publisher       : RedHat
+InstallDate     : 20250623
+UninstallString : MsiExec.exe /X{A86CF81E-C180-4F13-A14F-63743F285999}
+Architecture    : x64
+Path            : HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{A86CF81E-C180-4F13-A14F-63743
+                  F285999}
+
+
+Computername    : DESKTOP-64LA2VE
+Software        : Virtio-win-driver-installer
+Version         : 0.1.271
+Publisher       : Red Hat, Inc.
+InstallDate     : 20250611
+UninstallString : MsiExec.exe /I{B198BE6B-4EB7-4771-9E4F-A6DE965995EB}
+Architecture    : x64
+Path            : HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{B198BE6B-4EB7-4771-9E4F-A6DE9
+                  65995EB}
+
+
+Computername    : DESKTOP-64LA2VE
+Software        : PuTTY release 0.77 (64-bit)
+Version         : 0.77.0.0
+Publisher       : Simon Tatham
+InstallDate     : 20220619
+UninstallString : MsiExec.exe /X{E078C644-A120-4668-AD62-02E9FD530190}
+Architecture    : x64
+Path            : HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{E078C644-A120-4668-AD62-02E9F
+                  D530190}
+
+
+Computername    : DESKTOP-64LA2VE
+Software        : Spice Agent 0.10.0-5 (64-bit)
+Version         : 0.10.5
+Publisher       : Red Hat, Inc.
+InstallDate     : 20250611
+UninstallString : MsiExec.exe /X{EE3877E4-07B0-41F2-ADB8-B45133DDCE37}
+Architecture    : x64
+Path            : HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{EE3877E4-07B0-41F2-ADB8-B4513
+                  3DDCE37}
+
+
+Computername    : DESKTOP-64LA2VE
+Software        : Microsoft Visual C++ 2019 X64 Minimum Runtime - 14.28.29913
+Version         : 14.28.29913
+Publisher       : Microsoft Corporation
+InstallDate     : 20220619
+UninstallString : MsiExec.exe /I{EECDD137-13DA-46ED-ADA0-BDF7F8BE65B8}
+Architecture    : x64
+Path            : HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{EECDD137-13DA-46ED-ADA0-BDF7F
+                  8BE65B8}
+
+
+Computername    : DESKTOP-64LA2VE
+Software        : Google Chrome
+Version         : 152.0.7977.76
+Publisher       : Google LLC
+InstallDate     : 20260903
+UninstallString : "C:\Program Files\Google\Chrome\Application\152.0.7977.76\Installer\setup.exe" --uninstall
+                  --channel=stable --system-level --verbose-logging
+Architecture    : x86
+Path            : HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Google Chrome
+
+
+Computername    : DESKTOP-64LA2VE
+Software        : Microsoft Visual C++ 2015-2019 Redistributable (x86) - 14.28.29913
+Version         : 14.28.29913.0
+Publisher       : Microsoft Corporation
+InstallDate     :
+UninstallString : "C:\ProgramData\Package Cache\{03d1453c-7d5c-479c-afea-8482f406e036}\VC_redist.x86.exe"  /uninstall
+Architecture    : x86
+Path            : HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{03d1453c-7d5c-479
+                  c-afea-8482f406e036}
+
+
+Computername    : DESKTOP-64LA2VE
+Software        : Microsoft Visual C++ 2019 X86 Additional Runtime - 14.28.29913
+Version         : 14.28.29913
+Publisher       : Microsoft Corporation
+InstallDate     : 20220619
+UninstallString : MsiExec.exe /I{572DCD10-CF2E-43D1-8151-8BD9AC9086D0}
+Architecture    : x86
+Path            : HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{572DCD10-CF2E-43D
+                  1-8151-8BD9AC9086D0}
+
+
+Computername    : DESKTOP-64LA2VE
+Software        : Microsoft Visual C++ 2019 X86 Minimum Runtime - 14.28.29913
+Version         : 14.28.29913
+Publisher       : Microsoft Corporation
+InstallDate     : 20220619
+UninstallString : MsiExec.exe /I{6236EBBD-F50F-40B3-B819-8DB0C608308C}
+Architecture    : x86
+Path            : HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{6236EBBD-F50F-40B
+                  3-B819-8DB0C608308C}
+
+
+Computername    : DESKTOP-64LA2VE
+Software        : Microsoft Visual C++ 2015-2019 Redistributable (x64) - 14.28.29913
+Version         : 14.28.29913.0
+Publisher       : Microsoft Corporation
+InstallDate     :
+UninstallString : "C:\ProgramData\Package Cache\{855e31d2-9031-46e1-b06d-c9d7777deefb}\VC_redist.x64.exe"  /uninstall
+Architecture    : x86
+Path            : HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{855e31d2-9031-46e
+                  1-b06d-c9d7777deefb}
+
+# Copyright (c) 1993-2009 Microsoft Corp.
+#
+# This is a sample HOSTS file used by Microsoft TCP/IP for Windows.
+#
+# This file contains the mappings of IP addresses to host names. Each
+# entry should be kept on an individual line. The IP address should
+# be placed in the first column followed by the corresponding host name.
+# The IP address and the host name should be separated by at least one
+# space.
+#
+# Additionally, comments (such as these) may be inserted on individual
+# lines or following the machine name denoted by a '#' symbol.
+#
+# For example:
+#
+#      102.54.94.97     rhino.acme.com          # source server
+#       38.25.63.10     x.acme.com              # x client host
+
+# localhost name resolution is handled within DNS itself.
+#       127.0.0.1       localhost
+#       ::1             localhost
+Method invocation failed because [System.Boolean] does not contain a method named 'Replace'.
+At C:\Users\champuser\Downloads\winPEASpatched.ps1:1619 char:1
++ ((netsh.exe wlan show profiles) -match '\s{2,}:\s').replace("    All  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
+    + FullyQualifiedErrorId : MethodNotFound
+
+
+ Group: Access Control Assistance Operators
+
+     {GROUP EMPTY}
+
+ Group: Administrators
+
+DESKTOP-64LA2VE\Administrator
+DESKTOP-64LA2VE\champuser
+
+ Group: Backup Operators
+
+     {GROUP EMPTY}
+
+ Group: Cryptographic Operators
+
+     {GROUP EMPTY}
+
+ Group: Device Owners
+
+     {GROUP EMPTY}
+
+ Group: Distributed COM Users
+
+     {GROUP EMPTY}
+
+ Group: Event Log Readers
+
+     {GROUP EMPTY}
+
+ Group: Guests
+
+DESKTOP-64LA2VE\Guest
+
+ Group: Hyper-V Administrators
+
+     {GROUP EMPTY}
+
+ Group: IIS_IUSRS
+
+NT AUTHORITY\IUSR
+
+ Group: Network Configuration Operators
+
+     {GROUP EMPTY}
+
+ Group: Performance Log Users
+
+     {GROUP EMPTY}
+
+ Group: Performance Monitor Users
+
+     {GROUP EMPTY}
+
+ Group: Power Users
+
+     {GROUP EMPTY}
+
+ Group: Remote Desktop Users
+
+     {GROUP EMPTY}
+
+ Group: Remote Management Users
+
+     {GROUP EMPTY}
+
+ Group: Replicator
+
+     {GROUP EMPTY}
+
+ Group: System Managed Accounts Group
+
+DESKTOP-64LA2VE\DefaultAccount
+
+ Group: Users
+
+NT AUTHORITY\Authenticated Users
+NT AUTHORITY\INTERACTIVE
+
+
+
+Name                      Value
+----                      -----
+ALLUSERSPROFILE           C:\ProgramData
+APPDATA                   C:\Users\champuser\AppData\Roaming
+CommonProgramFiles        C:\Program Files\Common Files
+CommonProgramFiles(x86)   C:\Program Files (x86)\Common Files
+CommonProgramW6432        C:\Program Files\Common Files
+COMPUTERNAME              DESKTOP-64LA2VE
+ComSpec                   C:\Windows\system32\cmd.exe
+DriverData                C:\Windows\System32\Drivers\DriverData
+HOMEDRIVE                 C:
+HOMEPATH                  \Users\champuser
+LOCALAPPDATA              C:\Users\champuser\AppData\Local
+LOGONSERVER               \\DESKTOP-64LA2VE
+NUMBER_OF_PROCESSORS      2
+OS                        Windows_NT
+Path                      C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell
+                          \v1.0\;C:\Windows\System32\OpenSSH\;C:\Program
+                          Files\PuTTY\;C:\Users\champuser\AppData\Local\Microsoft\WindowsApps;
+PATHEXT                   .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL
+PROCESSOR_ARCHITECTURE    AMD64
+PROCESSOR_IDENTIFIER      Intel64 Family 15 Model 6 Stepping 1, GenuineIntel
+PROCESSOR_LEVEL           15
+PROCESSOR_REVISION        0601
+ProgramData               C:\ProgramData
+ProgramFiles              C:\Program Files
+ProgramFiles(x86)         C:\Program Files (x86)
+ProgramW6432              C:\Program Files
+PSModulePath              C:\Users\champuser\Documents\WindowsPowerShell\Modules;C:\Program
+                          Files\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules
+PUBLIC                    C:\Users\Public
+SESSIONNAME               Console
+SystemDrive               C:
+SystemRoot                C:\Windows
+TEMP                      C:\Users\CHAMPU~1\AppData\Local\Temp
+TMP                       C:\Users\CHAMPU~1\AppData\Local\Temp
+USERDOMAIN                DESKTOP-64LA2VE
+USERDOMAIN_ROAMINGPROFILE DESKTOP-64LA2VE
+USERNAME                  champuser
+USERPROFILE               C:\Users\champuser
+windir                    C:\Windows
+
+
+
+=========|| Sticky Notes Check
+
+=========|| Cached Credentials Check
+https://book.hacktricks.wiki/en/windows-hardening/windows-local-privilege-escalation/index.html#windows-vault
+
+Currently stored credentials:
+
+    Target: WindowsLive:target=virtualapp/didlogical
+    Type: Generic
+    User: 02hpzquygduimtqp
+    Local machine persistence
+
+
+=========|| UWP PasswordVault / Credential Locker Check
+https://hacktricks.wiki/en/windows-hardening/windows-local-privilege-escalation/index.html#uwp-passwordvault--credential-locker
+
+=========|| Checking for DPAPI RPC Master Keys
+Use the Mimikatz 'dpapi::masterkey' module with appropriate arguments (/rpc) to decrypt
+https://book.hacktricks.wiki/en/windows-hardening/windows-local-privilege-escalation/index.html#dpapi
+found: C:\Users\champuser\AppData\Roaming\Microsoft\\Protect\
+C:\Users\champuser\AppData\Roaming\Microsoft\Protect\S-1-5-21-4145177231-505709127-2928218559-1002
+C:\Users\champuser\AppData\Roaming\Microsoft\Protect\CREDHIST
+
+=========|| Checking for DPAPI Cred Master Keys
+Use the Mimikatz 'dpapi::cred' module with appropriate /masterkey to decrypt
+You can also extract many DPAPI masterkeys from memory with the Mimikatz 'sekurlsa::dpapi' module
+https://book.hacktricks.wiki/en/windows-hardening/windows-local-privilege-escalation/index.html#dpapi
+
+
+=========|| Current Logged on Users
+ USERNAME              SESSIONNAME        ID  STATE   IDLE TIME  LOGON TIME
+>champuser             console             1  Active      none   9/5/2026 5:57 PM
+
+=========|| Remote Sessions
+ SESSIONNAME       USERNAME                 ID  STATE   TYPE        DEVICE
+ services                                    0  Disc
+>console           champuser                 1  Active
+
+=========|| Kerberos tickets (does require admin to interact)
+
+Current LogonId is 0:0x11ce39b
+
+Cached Tickets: (0)
+
+=========|| Printing ClipBoard (if any)
+
+=========|| ClipBoard text found:
+o
+
+=========|| Unattended Files Check
+C:\Windows\Panther\Unattend.xml found.
+
+=========|| SAM / SYSTEM Backup Checks
+
+=========|| Group Policy Password Check
+
+=========|| Recycle Bin TIP:
+If credentials are found in the recycle bin, tool from nirsoft may assist: http://www.nirsoft.net/password_recovery_tools.html
+
+=========||  Password Check in Files/Folders
+=========|| Password Check. Starting at root of each drive. This will take some time. Like, grab a coffee or tea kinda time.
+=========|| Looking through each drive, searching for *.xml *.txt *.conf *.config *.cfg *.ini .y*ml *.log *.bak *.xls *.xlsx *.xlsm
+Possible Password found: IPs
+C:\ProgramData\VMware\VMware Tools\manifest.txt
+IPs triggered
+  ServiceDiscovery.installed = "TRUE"
+> ServiceDiscovery.version = "11.3.5.31214"
+  VmwTimeProvider.installed = "FALSE" > VmwTimeProvider.version = "11.3.5.31214"
+  Unity.installed = "TRUE" > Unity.version = "11.3.5.31214"
+  vmaudio_Vista.installed = "FALSE" > vmaudio_Vista.version = "5.10.0.7013"
+  vmrawdsk_Vista.installed = "FALSE" > vmrawdsk_Vista.version = "1.1.5.1"
+  vmrawdsk_Win8.installed = "FALSE" > vmrawdsk_Win8.version = "1.1.5.1"
+  hgfsclient.installed = "FALSE" > hgfsclient.version = "11.3.5.31214"
+  hgfs_driver_Vista.installed = "FALSE" > hgfs_driver_Vista.version = "11.0.42.1"
+  hgfs_driver_Win8.installed = "FALSE" > hgfs_driver_Win8.version = "11.0.42.1"
+  vmmemctl_Vista.installed = "FALSE" > vmmemctl_Vista.version = "7.5.5.1"
+  vmmemctl_Win8.installed = "TRUE" > vmmemctl_Win8.version = "7.5.5.1"
+  vmmouse_Vista.installed = "FALSE" > vmmouse_Vista.version = "12.5.10.1"
+  vmmouse_Win8.installed = "TRUE" > vmmouse_Win8.version = "12.5.10.1"
+  vmusbmouse_Vista.installed = "FALSE" > vmusbmouse_Vista.version = "12.5.10.1"
+  vmusbmouse_Win8.installed = "TRUE" > vmusbmouse_Win8.version = "12.5.10.1"
+  pvscsi_Vista.installed = "FALSE" > pvscsi_Vista.version = "1.3.15.1"
+  pvscsi_Win8.installed = "TRUE" > pvscsi_Win8.version = "1.3.17.1"
+  vsep_plugin.installed = "FALSE" > vsep_plugin.version = "11.3.5.31214"
+  gitray_plugin.installed = "FALSE" > gitray_plugin.version = "11.3.5.31214"
+  vsepflt_Vista.installed = "FALSE" > vsepflt_Vista.version = "11.3.5.1"
+  vsep_umc_Vista.installed = "FALSE" > vsep_umc_Vista.version = "11.2.0.0"
+  vsepflt_Win8.installed = "FALSE" > vsepflt_Win8.version = "11.3.5.1"
+  vsep_umc_Win8.installed = "FALSE" > vsep_umc_Win8.version = "11.2.0.0"
+  vnetflt_Vista.installed = "FALSE" > vnetflt_Vista.version = "11.0.0.0"
+  vnetWFP_Win7.installed = "FALSE" > vnetWFP_Win7.version = "11.3.0.1"
+  vnetWFP_Win8.installed = "FALSE" > vnetWFP_Win8.version = "11.3.0.1"
+  vnetWFP_Win10.installed = "FALSE" > vnetWFP_Win10.version = "11.3.0.1"
+  vmci_Vista.installed = "FALSE" > vmci_Vista.version = "9.8.16.1"
+  vsock_Vista.installed = "FALSE" > vsock_Vista.version = "9.8.17.1"
+  vmci_Win8.installed = "TRUE" > vmci_Win8.version = "9.8.16.1"
+  vsock_Win8.installed = "TRUE" > vsock_Win8.version = "9.8.17.1"
+  wddm_Vista.installed = "TRUE" > wddm_Vista.version = "8.17.3.11"
+  vmxnet_Win2K8.installed = "FALSE" > vmxnet_Win2K8.version = "2.2.0.1"
+  vmxnet3_Vista.installed = "FALSE" > vmxnet3_Vista.version = "1.9.2.1"
+  vmxnet3_Win8.installed = "TRUE" > vmxnet3_Win8.version = "1.9.2.1"
+  vcbprovider.installed = "TRUE" > vcbprovider.version = "11.3.5.31214"
+  efifw_Win8.installed = "TRUE" > efifw_Win8.version = "1.0.0.1"
+  glxgi_Win7.installed = "FALSE" > glxgi_Win7.version = "2.3.0.1"
+  giappdef_Win7.installed = "FALSE" > giappdef_Win7.version = "2.3.1.1"
+  glxgi_Win8.installed = "FALSE" > glxgi_Win8.version = "2.3.0.1"
+  giappdef_Win8.installed = "FALSE" > giappdef_Win8.version = "2.3.1.1"
+  vmtoolsd.installed = "TRUE" > vmtoolsd.version = "11.3.5.31214"
+  deploypkg.installed = "TRUE" > deploypkg.version = "11.3.5.22244"
+  perfmon.installed = "TRUE" > perfmon.version = "11.3.5.31214"
+  PluginAppInfo.installed = "TRUE" > PluginAppInfo.version = "11.3.5.31214"
+  PluginAutoLogon.installed = "TRUE" > PluginAutoLogon.version = "11.3.5.31214"
+  PluginAutoUpgrade.installed = "TRUE" > PluginAutoUpgrade.version = "11.3.5.31214"
+  PluginBitMapper.installed = "TRUE" > PluginBitMapper.version = "11.3.5.31214"
+  cblauncher.installed = "TRUE" > cblauncher.version = "1.1.0.391"
+  PluginCbHelper.installed = "TRUE" > PluginCbHelper.version = "11.3.5.31214"
+  PluginDarkModeSync.installed = "TRUE" > PluginDarkModeSync.version = "11.3.5.31214"
+  PluginDeployPkg.installed = "TRUE" > PluginDeployPkg.version = "11.3.5.31214"
+  PluginDesktopEvents.installed = "TRUE" > PluginDesktopEvents.version = "11.3.5.31214"
+  PluginDeviceHelper.installed = "TRUE" > PluginDeviceHelper.version = "11.3.5.31214"
+  PluginDisableGuestHib.installed = "TRUE" > PluginDisableGuestHib.version = "11.3.5.31214"
+  PluginDiskWiper.installed = "TRUE" > PluginDiskWiper.version = "11.3.5.31214"
+  PluginDndcp.installed = "TRUE" > PluginDndcp.version = "11.3.5.31214"
+  PluginGdp.installed = "TRUE" > PluginGdp.version = "11.3.5.31214"
+  PluginGuestInfo.installed = "TRUE" > PluginGuestInfo.version = "11.3.5.31214"
+  PluginGuestStore.installed = "TRUE" > PluginGuestStore.version = "11.3.5.31214"
+  PluginGuestStoreUpgrade.installed = "TRUE" > PluginGuestStoreUpgrade.version = "11.3.5.31214"
+  PluginHgfsServer.installed = "TRUE" > PluginHgfsServer.version = "11.3.5.31214"
+  PluginHgfsUsability.installed = "TRUE" > PluginHgfsUsability.version = "11.3.5.31214"
+  PluginHwUpgradeHelper.installed = "TRUE" > PluginHwUpgradeHelper.version = "11.3.5.31214"
+  PluginPowerOps.installed = "TRUE" > PluginPowerOps.version = "11.3.5.31214"
+  PluginResolutionSet.installed = "TRUE" > PluginResolutionSet.version = "11.3.5.31214"
+  PluginTimeSync.installed = "TRUE" > PluginTimeSync.version = "11.3.5.31214"
+  PluginVix.installed = "TRUE" > PluginVix.version = "11.3.5.31214"
+  PluginVmBackup.installed = "TRUE" > PluginVmBackup.version = "11.3.5.31214"
+  PluginVmtray.installed = "TRUE" > PluginVmtray.version = "11.3.5.31214"
+  monolithic.version = "11.3.5"
+C:\Users\All Users\Microsoft\Device Stage\Device\{113527a4-45d4-4b6f-b567-97838f1b04b0}\behavior.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\Device Stage\Device\{8702d817-5aad-4674-9ef3-4d3decd87120}\behavior.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\Device Stage\Task\{07deb856-fc6e-4fb9-8add-d8f2cf8722c9}\en-US\resource.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\Device Stage\Task\{07deb856-fc6e-4fb9-8add-d8f2cf8722c9}\resource.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\Device Stage\Task\{07deb856-fc6e-4fb9-8add-d8f2cf8722c9}\tasks.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\Device Stage\Task\{e35be42d-f742-4d96-a50a-1775fb1a7a42}\en-US\resource.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\Device Stage\Task\{e35be42d-f742-4d96-a50a-1775fb1a7a42}\tasks.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\IdentityCRL\INT\wlidsvcconfig.xml contains the word 'user' -excluding the 'users' directoryC:\Users\All Users\Microsoft\IdentityCRL\production\wlidsvcconfig.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\DesktopSettings2013.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\EaseOfAccessSettings2013.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\MicrosoftInternetExplorer2013.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\MicrosoftInternetExplorer2013Backup.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\MicrosoftLync2010.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\MicrosoftLync2013Win32.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\MicrosoftLync2013Win64.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\MicrosoftNotepad.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\MicrosoftOffice2010Win32.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\MicrosoftOffice2010Win64.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\MicrosoftOffice2013BackupWin32.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\MicrosoftOffice2013BackupWin64.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\MicrosoftOffice2013Office365Win32.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\MicrosoftOffice2013Office365Win64.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\MicrosoftOffice2013Win32.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\MicrosoftOffice2013Win64.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\MicrosoftOffice2016BackupWin32.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\MicrosoftOffice2016BackupWin64.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\MicrosoftOffice2016Win32.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\MicrosoftOffice2016Win64.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\MicrosoftOutlook2013CAWin32.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\MicrosoftOutlook2013CAWin64.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\MicrosoftOutlook2016CAWin32.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\MicrosoftOutlook2016CAWin64.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\MicrosoftSkypeForBusiness2016Win32.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\MicrosoftSkypeForBusiness2016Win64.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\MicrosoftWordpad.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\NetworkPrinters.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\RoamingCredentialSettings.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\ThemeSettings2013.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\UEV\InboxTemplates\VdiState.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\Windows\ClipSVC\Archive\KeyHolder\61afd6a2-d7c3-8d25-36c2-0c2c47e3aca8.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\Windows\Start Menu\Programs\Accessibility\desktop.ini contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\Windows\Start Menu\Programs\Accessories\System Tools\desktop.ini contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\Windows\Start Menu\Programs\Accessories\desktop.ini contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\Windows\Start Menu\Programs\Administrative Tools\desktop.ini contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\Windows\Start Menu\Programs\Maintenance\Desktop.ini contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\Windows\Start Menu\Programs\StartUp\desktop.ini contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\Windows\Start Menu\Programs\System Tools\desktop.ini contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\Windows\Start Menu\Programs\desktop.ini contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\Windows\Start Menu\desktop.ini contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\Windows Defender\Platform\4.18.2203.5-0\ThirdPartyNotices.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\Windows Defender\Platform\4.18.26070.9-0\ThirdPartyNotices.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\Microsoft\Windows Defender\Platform\4.18.26080.3-0\ThirdPartyNotices.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\VMware\logs\vmmsi.log_20220619_144557.log contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\VMware\VMware Horizon OS Optimization Tool\Archive\DESKTOP-IU0GBC2\VMware Windows 10, 11 and Server 2019, 2022[2022_06_19_14_55_32].xml contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\VMware\VMware Horizon OS Optimization Tool\Log\20220619145203.log contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\VMware\VMware Horizon OS Optimization Tool\config.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\VMware\VMware Tools\Unity Filters\adobeflashcs3.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\VMware\VMware Tools\Unity Filters\adobephotoshopcs3.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\VMware\VMware Tools\Unity Filters\googledesktop.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\VMware\VMware Tools\Unity Filters\microsoftoffice.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\VMware\VMware Tools\Unity Filters\vistasidebar.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\VMware\VMware Tools\Unity Filters\visualstudio2005.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\VMware\VMware Tools\Unity Filters\vmwarefilters.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\VMware\VMware Tools\Unity Filters\win7gadgets.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\VMware\VMware Tools\manifest.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\VMware\VMware Tools\tools.conf contains the word 'user' -excluding the 'users' directory
+C:\Users\All Users\VMware\VMware VGAuth\vgauth.conf contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Google\Chrome\User Data\Default\Extension Rules\000003.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Google\Chrome\User Data\Default\Extension Scripts\000003.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Google\Chrome\User Data\Default\Extension State\000003.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Google\Chrome\User Data\Default\GCM Store\Encryption\000003.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Google\Chrome\User Data\Default\GCM Store\000003.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Google\Chrome\User Data\Default\Local Extension Settings\ghbmnnjooekpmoecnnnilnnbdlolhkhi\000003.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Google\Chrome\User Data\Default\Local Storage\leveldb\000003.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Google\Chrome\User Data\Default\Service Worker\Database\000003.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Google\Chrome\User Data\Default\Session Storage\000003.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Google\Chrome\User Data\Default\shared_proto_db\metadata\000003.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Google\Chrome\User Data\Default\shared_proto_db\000003.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Google\Chrome\User Data\Default\Site Characteristics Database\000003.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Google\Chrome\User Data\Default\Storage\ext\nmmhkkegccagdldgiimedpiccmgmieda\def\Local Storage\leveldb\000003.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Google\Chrome\User Data\Default\Storage\ext\nmmhkkegccagdldgiimedpiccmgmieda\def\Session Storage\000003.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Google\Chrome\User Data\Default\Sync Data\LevelDB\000003.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Google\Chrome\User Data\optimization_guide_model_store\24\E6DC4029A1E4B4C1\3B2D670A0D638437\enus_denylist_encoded_241007.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Google\Chrome\User Data\optimization_guide_model_store\24\E6DC4029A1E4B4C1\3B2D670A0D638437\vocab_en-us.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Google\Chrome\User Data\optimization_guide_model_store\24\E6DC4029A1E4B4C1\B02FA082077D4A52\enus_denylist_encoded_241007.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Google\Chrome\User Data\optimization_guide_model_store\24\E6DC4029A1E4B4C1\B02FA082077D4A52\vocab_en-us.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Google\Chrome\User Data\Subresource Filter\Unindexed Rules\9.71.0\LICENSE.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Google\Chrome\User Data\ZxcvbnData\3\english_wikipedia.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Google\Chrome\User Data\ZxcvbnData\3\female_names.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Google\Chrome\User Data\ZxcvbnData\3\male_names.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Google\Chrome\User Data\ZxcvbnData\3\passwords.txt contains the word 'pass'
+C:\Users\champuser\AppData\Local\Google\Chrome\User Data\ZxcvbnData\3\passwords.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Google\Chrome\User Data\ZxcvbnData\3\surnames.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Google\Chrome\User Data\ZxcvbnData\3\us_tv_and_film.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Microsoft\CLR_v4.0\UsageLogs\powershell.exe.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Microsoft\CLR_v4.0\UsageLogs\powershell_ise.exe.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Microsoft\Internet Explorer\CacheStorage\edb.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Microsoft\Internet Explorer\CacheStorage\edbtmp.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Microsoft\Windows\Application Shortcuts\desktop.ini contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Microsoft\Windows\Burn\Burn\desktop.ini contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Microsoft\Windows\History\desktop.ini contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Microsoft\Windows\WebCache\V01.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Microsoft\Windows\WebCache\V0100001.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Microsoft\Windows\WebCache\V01tmp.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Microsoft\Windows\WinX\Group1\desktop.ini contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Microsoft\Windows\WinX\Group2\desktop.ini contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Microsoft\Windows\WinX\Group3\desktop.ini contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Microsoft_Corporation\powershell_ise.exe_StrongName_lw2v2vm3wmtzzpebq33gybmeoxukb04w\3.0.0.0\AutoSaveInformation\3940.xml contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Microsoft_Corporation\powershell_ise.exe_StrongName_lw2v2vm3wmtzzpebq33gybmeoxukb04w\3.0.0.0\user.config contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\AC\Microsoft\Internet Explorer\DOMStore\R1F5JBSK\microsoft.windows[1].xml contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\AppData\Indexed DB\edb.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\AppData\Indexed DB\edb00001.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\AppData\Indexed DB\edbtmp.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\LocalState\ConstraintIndex\Apps_{29de7bbe-dd2f-4f36-8d6d-c0f4a4b96c8b}\0.0.filtertrie.intermediate.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\LocalState\ConstraintIndex\Apps_{29de7bbe-dd2f-4f36-8d6d-c0f4a4b96c8b}\0.1.filtertrie.intermediate.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\LocalState\ConstraintIndex\Apps_{29de7bbe-dd2f-4f36-8d6d-c0f4a4b96c8b}\0.2.filtertrie.intermediate.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\LocalState\ConstraintIndex\Apps_{4260cc50-10a7-4e01-ab30-a4174c2bae33}\0.0.filtertrie.intermediate.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\LocalState\ConstraintIndex\Apps_{4260cc50-10a7-4e01-ab30-a4174c2bae33}\0.1.filtertrie.intermediate.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\LocalState\ConstraintIndex\Apps_{4260cc50-10a7-4e01-ab30-a4174c2bae33}\0.2.filtertrie.intermediate.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\LocalState\ConstraintIndex\Input_{6d617533-c7b1-41f0-9abb-c07e4e4e633a}\appsconversions.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\LocalState\ConstraintIndex\Input_{6d617533-c7b1-41f0-9abb-c07e4e4e633a}\appsglobals.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\LocalState\ConstraintIndex\Input_{6d617533-c7b1-41f0-9abb-c07e4e4e633a}\appssynonyms.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\LocalState\ConstraintIndex\Input_{6d617533-c7b1-41f0-9abb-c07e4e4e633a}\settingsconversions.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\LocalState\ConstraintIndex\Input_{6d617533-c7b1-41f0-9abb-c07e4e4e633a}\settingsglobals.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\LocalState\ConstraintIndex\Input_{6d617533-c7b1-41f0-9abb-c07e4e4e633a}\settingssynonyms.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\LocalState\ConstraintIndex\Settings_{431ee024-81ad-4058-b784-3318e21fe05f}\0.0.filtertrie.intermediate.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\LocalState\ConstraintIndex\Settings_{431ee024-81ad-4058-b784-3318e21fe05f}\0.1.filtertrie.intermediate.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\LocalState\ConstraintIndex\Settings_{431ee024-81ad-4058-b784-3318e21fe05f}\0.2.filtertrie.intermediate.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\LocalState\ConstraintIndex\Settings_{81557795-4f66-40ed-acac-d68b7c16a02e}\0.0.filtertrie.intermediate.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\LocalState\ConstraintIndex\Settings_{81557795-4f66-40ed-acac-d68b7c16a02e}\0.1.filtertrie.intermediate.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\LocalState\ConstraintIndex\Settings_{81557795-4f66-40ed-acac-d68b7c16a02e}\0.2.filtertrie.intermediate.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\LocalState\DeviceSearchCache\AppCache133930218653736217.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\LocalState\DeviceSearchCache\AppCache133930219097069177.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\LocalState\DeviceSearchCache\AppCache133941396074839227.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\LocalState\DeviceSearchCache\AppCache133941396614229071.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\LocalState\DeviceSearchCache\AppCache134327451431631490.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\LocalState\DeviceSearchCache\AppCache134327471883269223.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\LocalState\DeviceSearchCache\AppCache134331193654289630.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Packages\Microsoft.Windows.Cortana_cw5n1h2txyewy\LocalState\DeviceSearchCache\SettingsCache.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Temp\chrome_installer.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Temp\Virtio-win-guest-tools_20250611142129.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Temp\Virtio-win-guest-tools_20250611142129_000_virtio_win_gt_x64.msi.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Temp\Virtio-win-guest-tools_20250611142129_001_vwi.qmGk.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Temp\Virtio-win-guest-tools_20250611142129_002_vwi.ZvFr.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Temp\Virtio-win-guest-tools_20250611142129_003_vwi.VYdM.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Local\Temp\wmsetup.log contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\desktop.ini contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Roaming\Microsoft\Windows\SendTo\desktop.ini contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessibility\desktop.ini contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\desktop.ini contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Maintenance\Desktop.ini contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\System Tools\Desktop.ini contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\desktop.ini contains the word 'user' -excluding the 'users' directory
+C:\Users\champuser\ntuser.ini contains the word 'user' -excluding the 'users' directory
+C:\Windows\debug\PASSWD.LOG contains the word 'pass'
+C:\Windows\servicing\LCU\Package_for_RollupFix~31bf3856ad364e35~amd64~~17763.3046.2.15\amd64_microsoft-windows-appx-alluserstore_31bf3856ad364e35_10.0.17763.2989_none_7129c4e9c9ee5660\f\appxprovisioning.xml contains the word 'user' -excluding the 'users' directory
+C:\Windows\servicing\LCU\Package_for_RollupFix~31bf3856ad364e35~amd64~~17763.3046.2.15\amd64_microsoft-windows-appx-alluserstore_31bf3856ad364e35_10.0.17763.2989_none_7129c4e9c9ee5660\r\appxprovisioning.xml contains the word 'user' -excluding the 'users' directory
+C:\Windows\servicing\LCU\Package_for_RollupFix~31bf3856ad364e35~amd64~~17763.3046.2.15\amd64_microsoft-windows-hvsi-manager-shared_31bf3856ad364e35_10.0.17763.2989_none_51a47f02a5f08dcf\f\hvsiuserpolicies_containercreate.xml contains the word 'user' -excluding the 'users' directory
+C:\Windows\servicing\LCU\Package_for_RollupFix~31bf3856ad364e35~amd64~~17763.3046.2.15\amd64_microsoft-windows-hvsi-manager-shared_31bf3856ad364e35_10.0.17763.2989_none_51a47f02a5f08dcf\f\hvsiuserpolicies_containerrealtime.xml contains the word 'user' -excluding the 'users' directory
+C:\Windows\servicing\LCU\Package_for_RollupFix~31bf3856ad364e35~amd64~~17763.3046.2.15\amd64_microsoft-windows-hvsi-manager-shared_31bf3856ad364e35_10.0.17763.2989_none_51a47f02a5f08dcf\r\hvsiuserpolicies_containercreate.xml contains the word 'user' -excluding the 'users' directory
+C:\Windows\servicing\LCU\Package_for_RollupFix~31bf3856ad364e35~amd64~~17763.3046.2.15\amd64_microsoft-windows-hvsi-manager-shared_31bf3856ad364e35_10.0.17763.2989_none_51a47f02a5f08dcf\r\hvsiuserpolicies_containerrealtime.xml contains the word 'user' -excluding the 'users' directory
+C:\Windows\servicing\LCU\Package_for_RollupFix~31bf3856ad364e35~amd64~~17763.3046.2.15\amd64_tsportalwebpart_31bf3856ad364e35_10.0.17763.1697_none_820ae910c17bf649\f\allusers_tswa.log contains the word 'user' -excluding the 'users' directory
+C:\Windows\servicing\LCU\Package_for_RollupFix~31bf3856ad364e35~amd64~~17763.3046.2.15\amd64_tsportalwebpart_31bf3856ad364e35_10.0.17763.1697_none_820ae910c17bf649\r\allusers_tswa.log contains the word 'user' -excluding the 'users' directory
+C:\Windows\servicing\LCU\Package_for_RollupFix~31bf3856ad364e35~amd64~~17763.3046.2.15\wow64_microsoft-windows-appx-alluserstore_31bf3856ad364e35_10.0.17763.2989_none_7b7e6f3bfe4f185b\f\appxprovisioning.xml contains the word 'user' -excluding the 'users' directory
+C:\Windows\servicing\LCU\Package_for_RollupFix~31bf3856ad364e35~amd64~~17763.3046.2.15\wow64_microsoft-windows-appx-allung the 'users' directory
+C:\Windows\System32\DriverStore\FileRepository\prnms007.inf_amd64_2a93bb44e5f890b8\Amd64\MSPassthrough-pipelineconfig.xml contains the word 'pass'
+C:\Windows\WinSxS\amd64_dual_prnms007.inf_31bf3856ad364e35_10.0.17763.1_none_aba3a4867e262df7\Amd64\MSPassthrough-pipelineconfig.xml contains the word 'pass'
+C:\Windows\WinSxS\amd64_microsoft-windows-appx-alluserstore_31bf3856ad364e35_10.0.17763.2989_none_7129c4e9c9ee5660\AppxProvisioning.xml contains the word 'user' -excluding the 'users' directory
+C:\Windows\WinSxS\amd64_microsoft-windows-hvsi-manager-shared_31bf3856ad364e35_10.0.17763.1_none_f5170db52c1fc3f6\HvsiUserPolicies_ContainerCreate.xml contains the word 'user' -excluding the 'users' directory
+C:\Windows\WinSxS\amd64_microsoft-windows-hvsi-manager-shared_31bf3856ad364e35_10.0.17763.1_none_f5170db52c1fc3f6\HvsiUserPolicies_ContainerRealtime.xml contains the word 'user' -excluding the 'users' directory
+C:\Windows\WinSxS\amd64_microsoft-windows-hvsi-manager-shared_31bf3856ad364e35_10.0.17763.2989_none_51a47f02a5f08dcf\HvsiUserPolicies_ContainerCreate.xml contains the word 'user' -excluding the 'users' directory
+C:\Windows\WinSxS\amd64_microsoft-windows-hvsi-manager-shared_31bf3856ad364e35_10.0.17763.2989_none_51a47f02a5f08dcf\HvsiUserPolicies_ContainerRealtime.xml contains the word 'user' -excluding the 'users' directory
+C:\Windows\WinSxS\amd64_microsoft-windows-s..i-accessibilityuser_31bf3856ad364e35_10.0.17763.1_none_540a63e760e66c57\Desktop.ini contains the word 'user' -excluding the 'users' directory
+C:\Windows\WinSxS\amd64_microsoft-windows-s..ini-accessoriesuser_31bf3856ad364e35_10.0.17763.1_none_14ca179b6c4f2cc5\Desktop.ini contains the word 'user' -excluding the 'users' directory
+C:\Windows\WinSxS\amd64_microsoft-windows-s..ini-maintenanceuser_31bf3856ad364e35_10.0.17763.1_none_f6cd89f1ae0880dc\Desktop.ini contains the word 'user' -excluding the 'users' directory
+C:\Windows\WinSxS\amd64_microsoft-windows-s..ini-systemtoolsuser_31bf3856ad364e35_10.0.17763.1_none_117197a43bb0e3ad\Desktop.ini contains the word 'user' -excluding the 'users' directory
+C:\Windows\WinSxS\amd64_microsoft-windows-s..l32-kf-userprofiles_31bf3856ad364e35_10.0.17763.1_none_74abad687fc2f16d\desktop.ini contains the word 'user' -excluding the 'users' directory
+C:\Windows\WinSxS\amd64_microsoft-windows-s..sktopini-sendtouser_31bf3856ad364e35_10.0.17763.1_none_f90a7b66ec422af2\Desktop.ini contains the word 'user' -excluding the 'users' directory
+C:\Windows\WinSxS\amd64_microsoft-windows-u..userpredictionmodel_31bf3856ad364e35_10.0.17763.1_none_7d9e9b366f891397\SBCModel.txt contains the word 'user' -excluding the 'users' directory
+C:\Windows\WinSxS\wow64_microsoft-windows-appx-alluserstore_31bf3856ad364e35_10.0.17763.2989_none_7b7e6f3bfe4f185b\AppxProvisioning.xml contains the word 'user' -excluding the 'users' directory
+=========|| Registry Password Check -- REMOVED (full-hive recursive scan was hanging)
+
+    Directory: C:\Users\champuser\AppData\Local\Microsoft\Credentials
+
+
+Mode          LastWriteTime Length Name
+----          ------------- ------ ----
+-a-hs-  8/25/2026   3:26 PM  11136 DFBE70A7E5CC19A398EBF1B96859CE5D
