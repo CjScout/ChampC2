@@ -953,7 +953,337 @@ net accounts
 
 ######################## REGISTRY SETTING CHECK ########################
 Write-Host ""
-Write-Host -ForegroundColor Yellow "=========|| REGISTRY SETTINGS CHECK -- REMOVED (was hanging on second HKU hive)"
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========|| REGISTRY SETTINGS CHECK"
+
+ 
+Write-Host ""
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========|| Audit Log Settings"
+#Check audit registry
+if ((Test-Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Audit\).Property) {
+  Get-Item -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Audit\
+}
+else {
+  Write-Host "No Audit Log settings, no registry entry found."
+}
+
+ 
+Write-Host ""
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========|| Windows Event Forward (WEF) registry"
+if (Test-Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\EventLog\EventForwarding\SubscriptionManager) {
+  Get-Item HKLM:\SOFTWARE\Policies\Microsoft\Windows\EventLog\EventForwarding\SubscriptionManager
+}
+else {
+  Write-Host "Logs are not being fowarded, no registry entry found."
+}
+
+ 
+Write-Host ""
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========|| LAPS Check"
+if (Test-Path 'C:\Program Files\LAPS\CSE\Admpwd.dll') { Write-Host "LAPS dll found on this machine at C:\Program Files\LAPS\CSE\" -ForegroundColor Green }
+elseif (Test-Path 'C:\Program Files (x86)\LAPS\CSE\Admpwd.dll' ) { Write-Host "LAPS dll found on this machine at C:\Program Files (x86)\LAPS\CSE\" -ForegroundColor Green }
+else { Write-Host "LAPS dlls not found on this machine" }
+if ((Get-ItemProperty HKLM:\Software\Policies\Microsoft Services\AdmPwd -ErrorAction SilentlyContinue).AdmPwdEnabled -eq 1) { Write-Host "LAPS registry key found on this machine" -ForegroundColor Green }
+
+
+Write-Host ""
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========|| WDigest Check"
+$WDigest = (Get-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest).UseLogonCredential
+switch ($WDigest) {
+  0 { Write-Host "Value 0 found. Plain-text Passwords are not stored in LSASS" }
+  1 { Write-Host "Value 1 found. Plain-text Passwords may be stored in LSASS" -ForegroundColor red }
+  Default { Write-Host "The system was unable to find the specified registry value: UseLogonCredential" }
+}
+
+ 
+Write-Host ""
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========|| LSA Protection Check"
+$RunAsPPL = (Get-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Control\LSA).RunAsPPL
+$RunAsPPLBoot = (Get-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Control\LSA).RunAsPPLBoot
+switch ($RunAsPPL) {
+  2 { Write-Host "RunAsPPL: 2. Enabled without UEFI Lock" }
+  1 { Write-Host "RunAsPPL: 1. Enabled with UEFI Lock" }
+  0 { Write-Host "RunAsPPL: 0. LSA Protection Disabled. Try mimikatz." -ForegroundColor red }
+  Default { "The system was unable to find the specified registry value: RunAsPPL / RunAsPPLBoot" }
+}
+if ($RunAsPPLBoot) { Write-Host "RunAsPPLBoot: $RunAsPPLBoot" }
+
+ 
+Write-Host ""
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========|| Credential Guard Check"
+$LsaCfgFlags = (Get-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Control\LSA).LsaCfgFlags
+switch ($LsaCfgFlags) {
+  2 { Write-Host "LsaCfgFlags 2. Enabled without UEFI Lock" }
+  1 { Write-Host "LsaCfgFlags 1. Enabled with UEFI Lock" }
+  0 { Write-Host "LsaCfgFlags 0. LsaCfgFlags Disabled." -ForegroundColor red }
+  Default { "The system was unable to find the specified registry value: LsaCfgFlags" }
+}
+
+ 
+Write-Host ""
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========|| Cached WinLogon Credentials Check"
+if (Test-Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon") {
+  (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name "CACHEDLOGONSCOUNT").CACHEDLOGONSCOUNT
+  Write-Host "However, only the SYSTEM user can view the credentials here: HKEY_LOCAL_MACHINE\SECURITY\Cache"
+  Write-Host "Or, using mimikatz lsadump::cache"
+}
+
+Write-Host ""
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========|| Additonal Winlogon Credentials Check"
+
+(Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon").DefaultDomainName
+(Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon").DefaultUserName
+(Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon").DefaultPassword
+(Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon").AltDefaultDomainName
+(Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon").AltDefaultUserName
+(Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon").AltDefaultPassword
+
+
+Write-Host ""
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========|| RDCMan Settings Check"
+
+if (Test-Path "$env:USERPROFILE\appdata\Local\Microsoft\Remote Desktop Connection Manager\RDCMan.settings") {
+  Write-Host "RDCMan Settings Found at: $($env:USERPROFILE)\appdata\Local\Microsoft\Remote Desktop Connection Manager\RDCMan.settings" -ForegroundColor Red
+}
+else { Write-Host "No RDCMan.Settings found." }
+
+
+Write-Host ""
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========|| RDP Saved Connections Check"
+
+Write-Host "HK_Users"
+New-PSDrive -PSProvider Registry -Name HKU -Root HKEY_USERS -ErrorAction SilentlyContinue
+Get-ChildItem HKU:\ -ErrorAction SilentlyContinue | ForEach-Object {
+  # get the SID from output
+  $HKUSID = $_.Name.Replace('HKEY_USERS\', "")
+  if (Test-Path "registry::HKEY_USERS\$HKUSID\Software\Microsoft\Terminal Server Client\Default") {
+    Write-Host "Server Found: $((Get-ItemProperty "registry::HKEY_USERS\$HKUSID\Software\Microsoft\Terminal Server Client\Default" -Name MRU0).MRU0)"
+  }
+  else { Write-Host "Not found for $($_.Name)" }
+}
+
+Write-Host "HKCU"
+if (Test-Path "registry::HKEY_CURRENT_USER\Software\Microsoft\Terminal Server Client\Default") {
+  Write-Host "Server Found: $((Get-ItemProperty "registry::HKEY_CURRENT_USER\Software\Microsoft\Terminal Server Client\Default" -Name MRU0).MRU0)"
+}
+else { Write-Host "Terminal Server Client not found in HCKU" }
+
+Write-Host ""
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========|| Putty Stored Credentials Check"
+
+if (Test-Path HKCU:\SOFTWARE\SimonTatham\PuTTY\Sessions) {
+  Get-ChildItem HKCU:\SOFTWARE\SimonTatham\PuTTY\Sessions | ForEach-Object {
+    $RegKeyName = Split-Path $_.Name -Leaf
+    Write-Host "Key: $RegKeyName"
+    @("HostName", "PortNumber", "UserName", "PublicKeyFile", "PortForwardings", "ConnectionSharing", "ProxyUsername", "ProxyPassword") | ForEach-Object {
+      Write-Host "$_ :"
+      Write-Host "$((Get-ItemProperty  HKCU:\SOFTWARE\SimonTatham\PuTTY\Sessions\$RegKeyName).$_)"
+    }
+  }
+}
+else { Write-Host "No putty credentials found in HKCU:\SOFTWARE\SimonTatham\PuTTY\Sessions" }
+
+
+Write-Host ""
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========|| SSH Key Checks"
+Write-Host ""
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========|| If found:"
+Write-Host "https://blog.ropnop.com/extracting-ssh-private-keys-from-windows-10-ssh-agent/" -ForegroundColor Yellow
+Write-Host ""
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========|| Checking Putty SSH KNOWN HOSTS"
+if (Test-Path HKCU:\Software\SimonTatham\PuTTY\SshHostKeys) { 
+  Write-Host "$((Get-Item -Path HKCU:\Software\SimonTatham\PuTTY\SshHostKeys).Property)"
+}
+else { Write-Host "No putty ssh keys found" }
+
+
+Write-Host ""
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========|| Checking for OpenSSH Keys"
+if (Test-Path HKCU:\Software\OpenSSH\Agent\Keys) { Write-Host "OpenSSH keys found. Try this for decryption: https://github.com/ropnop/windows_sshagent_extract" -ForegroundColor Yellow }
+else { Write-Host "No OpenSSH Keys found." }
+
+
+Write-Host ""
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========|| Checking for WinVNC Passwords"
+if (Test-Path "HKCU:\Software\ORL\WinVNC3\Password") { Write-Host " WinVNC found at HKCU:\Software\ORL\WinVNC3\Password" }else { Write-Host "No WinVNC found." }
+
+
+Write-Host ""
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========|| Checking for SNMP Passwords"
+if (Test-Path "HKLM:\SYSTEM\CurrentControlSet\Services\SNMP") { Write-Host "SNMP Key found at HKLM:\SYSTEM\CurrentControlSet\Services\SNMP" }else { Write-Host "No SNMP found." }
+
+
+Write-Host ""
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========|| Checking for TightVNC Passwords"
+if (Test-Path "HKCU:\Software\TightVNC\Server") { Write-Host "TightVNC key found at HKCU:\Software\TightVNC\Server" }else { Write-Host "No TightVNC found." }
+
+
+Write-Host ""
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========|| UAC Settings"
+if ((Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System).EnableLUA -eq 1) {
+  Write-Host "EnableLUA is equal to 1. Part or all of the UAC components are on."
+  Write-Host "https://book.hacktricks.wiki/en/windows-hardening/authentication-credentials-uac-and-efs/uac-user-account-control.html#very-basic-uac-bypass-full-file-system-access" -ForegroundColor Yellow
+}
+else { Write-Host "EnableLUA value not equal to 1" }
+
+
+Write-Host ""
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========|| Recently Run Commands (WIN+R)"
+
+Get-ChildItem HKU:\ -ErrorAction SilentlyContinue | ForEach-Object {
+  # get the SID from output
+  $HKUSID = $_.Name.Replace('HKEY_USERS\', "")
+  $property = (Get-Item "HKU:\$_\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\RunMRU" -ErrorAction SilentlyContinue).Property
+  $HKUSID | ForEach-Object {
+    if (Test-Path "HKU:\$_\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\RunMRU") {
+      Write-Host -ForegroundColor Blue "=========||HKU Recently Run Commands"
+      foreach ($p in $property) {
+        Write-Host "$((Get-Item "HKU:\$_\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\RunMRU" -ErrorAction SilentlyContinue).getValue($p))" 
+      }
+    }
+  }
+}
+
+
+Write-Host ""
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========||HKCU Recently Run Commands"
+$property = (Get-Item "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\RunMRU" -ErrorAction SilentlyContinue).Property
+foreach ($p in $property) {
+  Write-Host "$((Get-Item "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\RunMRU" -ErrorAction SilentlyContinue).getValue($p))"
+}
+
+
+Write-Host ""
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========|| Always Install Elevated Check"
+ 
+ 
+Write-Host "Checking Windows Installer Registry (will populate if the key exists)"
+if ((Get-ItemProperty HKLM:\SOFTWARE\Policies\Microsoft\Windows\Installer -ErrorAction SilentlyContinue).AlwaysInstallElevated -eq 1) {
+  Write-Host "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Installer).AlwaysInstallElevated = 1" -ForegroundColor red
+  Write-Host "Try msfvenom msi package to escalate" -ForegroundColor red
+  Write-Host "https://book.hacktricks.wiki/en/windows-hardening/windows-local-privilege-escalation/index.html#metasploit-payloads" -ForegroundColor Yellow
+}
+ 
+if ((Get-ItemProperty HKCU:\SOFTWARE\Policies\Microsoft\Windows\Installer -ErrorAction SilentlyContinue).AlwaysInstallElevated -eq 1) { 
+  Write-Host "HKCU:\SOFTWARE\Policies\Microsoft\Windows\Installer).AlwaysInstallElevated = 1" -ForegroundColor red
+  Write-Host "Try msfvenom msi package to escalate" -ForegroundColor red
+  Write-Host "https://book.hacktricks.wiki/en/windows-hardening/windows-local-privilege-escalation/index.html#metasploit-payloads" -ForegroundColor Yellow
+}
+
+
+Write-Host ""
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========|| PowerShell Info"
+
+(Get-ItemProperty registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\1\PowerShellEngine).PowerShellVersion | ForEach-Object {
+  Write-Host "PowerShell $_ available"
+}
+(Get-ItemProperty registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\3\PowerShellEngine).PowerShellVersion | ForEach-Object {
+  Write-Host  "PowerShell $_ available"
+}
+
+
+Write-Host ""
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========|| PowerShell Registry Transcript Check"
+
+if (Test-Path HKCU:\Software\Policies\Microsoft\Windows\PowerShell\Transcription) {
+  Get-Item HKCU:\Software\Policies\Microsoft\Windows\PowerShell\Transcription
+}
+if (Test-Path HKLM:\Software\Policies\Microsoft\Windows\PowerShell\Transcription) {
+  Get-Item HKLM:\Software\Policies\Microsoft\Windows\PowerShell\Transcription
+}
+if (Test-Path HKCU:\Wow6432Node\Software\Policies\Microsoft\Windows\PowerShell\Transcription) {
+  Get-Item HKCU:\Wow6432Node\Software\Policies\Microsoft\Windows\PowerShell\Transcription
+}
+if (Test-Path HKLM:\Wow6432Node\Software\Policies\Microsoft\Windows\PowerShell\Transcription) {
+  Get-Item HKLM:\Wow6432Node\Software\Policies\Microsoft\Windows\PowerShell\Transcription
+}
+ 
+
+Write-Host ""
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========|| PowerShell Module Log Check"
+if (Test-Path HKCU:\Software\Policies\Microsoft\Windows\PowerShell\ModuleLogging) {
+  Get-Item HKCU:\Software\Policies\Microsoft\Windows\PowerShell\ModuleLogging
+}
+if (Test-Path HKLM:\Software\Policies\Microsoft\Windows\PowerShell\ModuleLogging) {
+  Get-Item HKLM:\Software\Policies\Microsoft\Windows\PowerShell\ModuleLogging
+}
+if (Test-Path HKCU:\Wow6432Node\Software\Policies\Microsoft\Windows\PowerShell\ModuleLogging) {
+  Get-Item HKCU:\Wow6432Node\Software\Policies\Microsoft\Windows\PowerShell\ModuleLogging
+}
+if (Test-Path HKLM:\Wow6432Node\Software\Policies\Microsoft\Windows\PowerShell\ModuleLogging) {
+  Get-Item HKLM:\Wow6432Node\Software\Policies\Microsoft\Windows\PowerShell\ModuleLogging
+}
+ 
+
+Write-Host ""
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========|| PowerShell Script Block Log Check"
+ 
+if ( Test-Path HKCU:\Software\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging) {
+  Get-Item HKCU:\Software\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging
+}
+if ( Test-Path HKLM:\Software\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging) {
+  Get-Item HKLM:\Software\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging
+}
+if ( Test-Path HKCU:\Wow6432Node\Software\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging) {
+  Get-Item HKCU:\Wow6432Node\Software\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging
+}
+if ( Test-Path HKLM:\Wow6432Node\Software\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging) {
+  Get-Item HKLM:\Wow6432Node\Software\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging
+}
+
+
+Write-Host ""
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========|| WSUS check for http and UseWAServer = 1, if true, might be vulnerable to exploit"
+Write-Host "https://book.hacktricks.wiki/en/windows-hardening/windows-local-privilege-escalation/index.html#wsus" -ForegroundColor Yellow
+if (Test-Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate) {
+  Get-Item HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate
+}
+if ((Get-ItemProperty HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU -Name "USEWUServer" -ErrorAction SilentlyContinue).UseWUServer) {
+  (Get-ItemProperty HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU -Name "USEWUServer").UseWUServer
+}
+
+
+Write-Host ""
+if ($TimeStamp) { TimeElapsed }
+Write-Host -ForegroundColor Blue "=========|| Internet Settings HKCU / HKLM"
+
+$property = (Get-Item "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -ErrorAction SilentlyContinue).Property
+foreach ($p in $property) {
+  Write-Host "$p - $((Get-Item "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -ErrorAction SilentlyContinue).getValue($p))"
+}
+ 
+$property = (Get-Item "HKLM:\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -ErrorAction SilentlyContinue).Property
+foreach ($p in $property) {
+  Write-Host "$p - $((Get-Item "HKLM:\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -ErrorAction SilentlyContinue).getValue($p))"
+}
+
 
 ######################## PROCESS INFORMATION ########################
 Write-Host ""
@@ -1635,32 +1965,4 @@ $Drives.Root | ForEach-Object {
 
 ######################## Registry Password Check ########################
 
-Write-Host -ForegroundColor Blue "=========|| Registry Password Check"
-# Looking through the entire registry for passwords
-Write-Host "This will take some time. Won't you have a pepsi?"
-$regPath = @("registry::\HKEY_CURRENT_USER\", "registry::\HKEY_LOCAL_MACHINE\")
-# Search for the string in registry values and properties
-foreach ($r in $regPath) {
-(Get-ChildItem -Path $r -Recurse -Force -ErrorAction SilentlyContinue) | ForEach-Object {
-    $property = $_.property
-    $Name = $_.Name
-    $property | ForEach-Object {
-      $Prop = $_
-      $regexSearch.keys | ForEach-Object {
-        $value = $regexSearch[$_]
-        if ($Prop | Where-Object { $_ -like $value }) {
-          Write-Host "Possible Password Found: $Name\$Prop"
-          Write-Host "Key: $_" -ForegroundColor Red
-        }
-        $Prop | ForEach-Object {   
-          $propValue = (Get-ItemProperty "registry::$Name").$_
-          if ($propValue | Where-Object { $_ -like $Value }) {
-            Write-Host "Possible Password Found: $name\$_ $propValue"
-          }
-        }
-      }
-    }
-  }
-  if ($TimeStamp) { TimeElapsed }
-  Write-Host "Finished $r"
-}
+Write-Host -ForegroundColor Yellow "=========|| Registry Password Check -- REMOVED (full-hive recursive scan was hanging)"
