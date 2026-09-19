@@ -1,0 +1,15 @@
+.Set CabinetNameTemplate=enum_all.cab
+.Set DiskDirectoryTemplate=C:\temp
+.Set DestinationDir=enum
+C:\temp\01_user_privs.txt
+C:\temp\02_processes.txt
+C:\temp\03_network_connections.txt
+C:\temp\04_services.txt
+C:\temp\05_local_users.txt
+C:\temp\06_local_groups.txt
+C:\temp\07_admins.txt
+C:\temp\08_network_config.txt
+C:\temp\09_firewall.txt
+C:\temp\10_arp_table.txt
+C:\temp\11_smb_sessions.txt
+C:\temp\12_sysinfo.txt
