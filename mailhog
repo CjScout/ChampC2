@@ -1,0 +1,3 @@
+sudo apt install golang -y
+go install github.com/mailhog/MailHog@latest
+~/go/bin/MailHog
