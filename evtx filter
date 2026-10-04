@@ -1,0 +1,1 @@
+python evtx_dump.py sysmon.evtx | grep -B 5 -A 40 "EventID>1<" | grep -E "(UtcTime|Image>|ParentImage>|CommandLine>|User>)" | grep -v "Google\|MsMpEng\|svchost\|WmiPrvSE"
